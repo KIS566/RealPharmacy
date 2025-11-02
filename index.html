@@ -1,0 +1,2543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REAL PHARMACY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* MAIN STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0066cc, #003366);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        /* SCREEN CONTAINER */
+        .screen-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+            display: none;
+        }
+        
+        /* LOGIN SCREEN */
+        .login-container {
+            padding: 40px 30px;
+            background: rgba(0, 51, 102, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.6);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 150, 255, 0.4);
+            z-index: 1;
+        }
+        
+        .pharma-brand {
+            font-size: 32px;
+            font-weight: bold;
+            color: #00ccff;
+            text-shadow: 0 0 15px rgba(0, 204, 255, 0.8);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        .login-title {
+            color: #00ccff;
+            margin-bottom: 30px;
+            font-size: 24px;
+            text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #00ccff;
+            font-weight: bold;
+        }
+        
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 51, 0.5);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 8px;
+            font-size: 16px;
+            color: white;
+            outline: none;
+            resize: vertical;
+        }
+        
+        .input-group textarea {
+            min-height: 100px;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            color: #00ccff;
+            border: 2px solid #00ccff;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .login-btn:hover {
+            background: rgba(0, 204, 255, 0.1);
+        }
+        
+        .register-link {
+            display: block;
+            margin-top: 25px;
+            color: #00ccff;
+            text-decoration: none;
+        }
+        
+        .subtext {
+            color: #00ccff;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        
+        /* OTP INPUT STYLE */
+        #otp {
+            letter-spacing: 10px;
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        /* LANGUAGE SELECTION SCREEN */
+        .language-container {
+            padding: 40px 30px;
+            background: rgba(0, 51, 102, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.6);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 150, 255, 0.4);
+            z-index: 1;
+        }
+        
+        .language-title {
+            font-size: 28px;
+            color: #00ccff;
+            margin-bottom: 30px;
+            text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+        }
+        
+        .language-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .language-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        
+        .language-btn {
+            flex: 1;
+            padding: 15px;
+            background: rgba(0, 102, 204, 0.3);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 60px;
+        }
+        
+        .language-btn:hover {
+            background: rgba(0, 102, 204, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 204, 255, 0.4);
+        }
+        
+        /* PHARMACY APP */
+        .pharma-app {
+            padding: 20px;
+            background: rgba(0, 51, 102, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.6);
+        }
+        
+        .app-header {
+            background: #0066cc;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        /* MOVED AI ASSISTANT TO TOP */
+        .ai-assistant {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .ai-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .ai-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ccff;
+            margin-left: 10px;
+        }
+        
+        .ai-message-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            min-height: 80px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .ai-input-container {
+            position: relative;
+            margin-top: 15px;
+        }
+        
+        .ai-input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 8px;
+            font-size: 16px;
+            color: white;
+            outline: none;
+        }
+        
+        .ai-submit-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background: #00ccff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 7px 15px;
+            cursor: pointer;
+        }
+        
+        .feature-boxes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-box {
+            background: rgba(0, 102, 204, 0.3);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .feature-box:hover {
+            background: rgba(0, 102, 204, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 204, 255, 0.4);
+        }
+        
+        .feature-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #00ccff;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+        }
+
+        /* EMERGENCY ORGAN HELP PAGE */
+        .organ-selection {
+            padding: 20px;
+            background: rgba(0, 51, 102, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.6);
+        }
+        
+        .organ-header {
+            background: #0066cc;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background: rgba(0, 204, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .organ-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .organ-subtitle {
+            font-size: 14px;
+        }
+        
+        .organ-btn {
+            width: 100%;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .organ-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .organ-btn i {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        /* SECOND HOME PAGE STYLES */
+        .second-home {
+            padding: 20px;
+            background: rgba(0, 51, 102, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.6);
+        }
+        
+        .second-home-header {
+            background: #0066cc;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .second-home-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .second-home-subtitle {
+            font-size: 14px;
+        }
+        
+        .second-home-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .second-home-feature {
+            background: rgba(0, 102, 204, 0.3);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .second-home-feature:hover {
+            background: rgba(0, 102, 204, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 204, 255, 0.4);
+        }
+        
+        .second-home-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: #00ccff;
+        }
+        
+        .second-home-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+        }
+
+        /* UPLOAD PRESCRIPTION BUTTON */
+        .upload-prescription-btn {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 204, 255, 0.2);
+            color: #00ccff;
+            border: 2px solid #00ccff;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .upload-prescription-btn:hover {
+            background: rgba(0, 204, 255, 0.3);
+        }
+
+        /* Error Message Style */
+        .error-message {
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            background: rgba(0, 51, 102, 0.9);
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #00ccff;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            color: white;
+        }
+
+        .close-btn {
+            color: #00ccff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: white;
+        }
+
+        .qr-code-img {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background: white;
+            padding: 10px;
+        }
+
+        .modal-title {
+            color: #00ccff;
+            margin-bottom: 15px;
+        }
+
+        .paytm-scanner {
+            width: 250px;
+            height: 250px;
+            margin: 15px auto;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+        }
+
+        .paytm-scanner img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /* Camera Scanner Styles */
+        .scanner-container {
+            width: 100%;
+            height: 300px;
+            background-color: #000;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .scanner-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .scanner-placeholder i {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: #00ccff;
+        }
+
+        .scanner-frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 60%;
+            border: 3px solid #00ccff;
+            border-radius: 5px;
+            z-index: 2;
+        }
+
+        .scanner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .scanner-overlay::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 60%;
+            border: 2px dashed #00ccff;
+            border-radius: 5px;
+        }
+
+        .scan-btn {
+            width: 100%;
+            padding: 12px;
+            background: #00ccff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .scan-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .scan-error {
+            color: #ff6b6b;
+            margin-top: 10px;
+        }
+
+        /* AI Disease Predictor Styles */
+        .ai-disease-predictor {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .disease-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .disease-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ccff;
+            margin-left: 10px;
+        }
+
+        .disease-message-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            min-height: 80px;
+        }
+
+        .voice-input-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .voice-input-btn {
+            flex: 1;
+            padding: 12px;
+            background: #00ccff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .voice-input-btn.stop {
+            background: #ff6b6b;
+        }
+
+        .voice-input-btn:hover {
+            opacity: 0.9;
+        }
+
+        .symptoms-list {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .symptom-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .remove-symptom {
+            color: #ff6b6b;
+            cursor: pointer;
+        }
+
+        .predict-btn {
+            width: 100%;
+            padding: 12px;
+            background: #00ccff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .prediction-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .prediction-title {
+            color: #00ccff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .prediction-item {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .prediction-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #00ccff;
+        }
+
+        .accuracy-meter {
+            height: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .accuracy-fill {
+            height: 100%;
+            background: #00ccff;
+            border-radius: 5px;
+        }
+
+        .listen-animation {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            position: relative;
+        }
+
+        .listen-animation span {
+            display: block;
+            width: 4px;
+            height: 6px;
+            background: white;
+            position: absolute;
+            bottom: 0;
+            animation: listen 1.5s infinite ease-in-out;
+        }
+
+        .listen-animation span:nth-child(1) {
+            left: 0;
+            animation-delay: 0.2s;
+        }
+
+        .listen-animation span:nth-child(2) {
+            left: 6px;
+            animation-delay: 0.4s;
+        }
+
+        .listen-animation span:nth-child(3) {
+            left: 12px;
+            animation-delay: 0.6s;
+        }
+
+        .listen-animation span:nth-child(4) {
+            left: 18px;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes listen {
+            0%, 100% { height: 6px; }
+            50% { height: 20px; }
+        }
+
+        /* AI Chat Message Styles */
+        .ai-chat-container {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .ai-message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background: rgba(0, 204, 255, 0.2);
+            margin-left: auto;
+            border: 1px solid rgba(0, 204, 255, 0.4);
+        }
+
+        .bot-message {
+            background: rgba(0, 0, 0, 0.3);
+            margin-right: auto;
+            border: 1px solid rgba(0, 204, 255, 0.2);
+        }
+
+        .typing-indicator {
+            display: inline-block;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #00ccff;
+            border-radius: 50%;
+            margin-right: 3px;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        /* Medicine Order Styles */
+        .medicine-order {
+            padding: 20px;
+            background: rgba(0, 51, 102, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 102, 204, 0.6);
+        }
+        
+        .order-header {
+            background: #0066cc;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .order-title {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .order-subtitle {
+            font-size: 14px;
+        }
+        
+        .medicine-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(0, 102, 204, 0.3);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .medicine-name {
+            font-weight: bold;
+        }
+        
+        .medicine-price {
+            color: #00ccff;
+        }
+        
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            background: rgba(0, 204, 255, 0.2);
+            border: 1px solid #00ccff;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .quantity {
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .order-summary {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .total-row {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .address-section {
+            margin-top: 20px;
+        }
+        
+        .address-title {
+            color: #00ccff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .saved-address {
+            background: rgba(0, 102, 204, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .saved-address:hover {
+            background: rgba(0, 102, 204, 0.5);
+        }
+        
+        .saved-address.selected {
+            border: 2px solid #00ccff;
+        }
+        
+        .address-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .address-action-btn {
+            flex: 1;
+            padding: 8px;
+            background: rgba(0, 204, 255, 0.2);
+            color: #00ccff;
+            border: 1px solid #00ccff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .new-address-btn {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 204, 255, 0.2);
+            color: #00ccff;
+            border: 2px solid #00ccff;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .new-address-form {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .form-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .save-btn {
+            background: #00ccff;
+            color: white;
+            border: none;
+        }
+        
+        .cancel-btn {
+            background: transparent;
+            color: #00ccff;
+            border: 1px solid #00ccff;
+        }
+        
+        .place-order-btn {
+            width: 100%;
+            padding: 15px;
+            background: #00ccff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 150, 0, 0.3);
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .success-icon {
+            font-size: 50px;
+            color: #00ff00;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGIN SCREEN (FIRST PAGE) -->
+    <div id="loginScreen" class="screen-container login-container">
+        <div class="pharma-brand">REAL PHARMACY</div>
+        <div class="login-title">APP LOGIN</div>
+        
+        <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <div id="emailError" class="error-message">Please enter a valid email</div>
+        </div>
+        
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter your password" minlength="6" required>
+            <div id="passwordError" class="error-message">Password must be at least 6 characters</div>
+        </div>
+        
+        <button class="login-btn" onclick="validateLogin()">LOGIN</button>
+        <a href="#" class="register-link">Don't have an account? Register</a>
+        <div class="subtext">⏰ Fastest Medicine Delivery</div>
+    </div>
+
+    <!-- OTP VERIFICATION SCREEN -->
+    <div id="otpScreen" class="screen-container login-container">
+        <div class="pharma-brand">REAL PHARMACY</div>
+        <div class="login-title">OTP VERIFICATION</div>
+        
+        <div class="input-group">
+            <label>Enter OTP Sent to Your Mobile</label>
+            <input type="text" id="otp" placeholder="Enter 6-digit OTP" maxlength="6" required>
+            <div id="otpError" class="error-message">Please enter a valid 6-digit OTP</div>
+        </div>
+        
+        <button class="login-btn" onclick="validateOTP()">VERIFY OTP</button>
+        <a href="#" class="register-link" onclick="resendOTP()">Resend OTP</a>
+        <div class="subtext">Secure Login Process</div>
+    </div>
+
+    <!-- LANGUAGE SELECTION SCREEN (SECOND PAGE) -->
+    <div id="languageScreen" class="screen-container language-container">
+        <div class="language-title">Select Your Language</div>
+        <div class="language-options">
+            <div class="language-row">
+                <button class="language-btn" onclick="selectLanguage('hi')">
+                    <i class="fas fa-language"></i> हिंदी (Hindi)
+                </button>
+                <button class="language-btn" onclick="selectLanguage('en')">
+                    <i class="fas fa-language"></i> English
+                </button>
+            </div>
+            <div class="language-row">
+                <button class="language-btn" onclick="selectLanguage('ta')">
+                    <i class="fas fa-language"></i> தமிழ் (Tamil)
+                </button>
+                <button class="language-btn" onclick="selectLanguage('bh')">
+                    <i class="fas fa-language"></i> भोजपुरी (Bhojpuri)
+                </button>
+            </div>
+            <div class="language-row">
+                <button class="language-btn" onclick="selectLanguage('mr')">
+                    <i class="fas fa-language"></i> मराठी (Marathi)
+                </button>
+                <button class="language-btn" onclick="selectLanguage('bn')">
+                    <i class="fas fa-language"></i> বাংলা (Bengali)
+                </button>
+            </div>
+            <div class="language-row">
+                <button class="language-btn" onclick="selectLanguage('te')">
+                    <i class="fas fa-language"></i> తెలుగు (Telugu)
+                </button>
+                <button class="language-btn" onclick="selectLanguage('kn')">
+                    <i class="fas fa-language"></i> ಕನ್ನಡ (Kannada)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHARMACY APP (THIRD PAGE) -->
+    <div id="appScreen" class="screen-container pharma-app">
+        <div class="app-header">
+            <h2 id="appTitle">REAL PHARMACY</h2>
+            <p id="appSubtitle">Your trusted healthcare partner</p>
+        </div>
+        
+        <!-- UPLOAD PRESCRIPTION BUTTON ADDED HERE -->
+        <button class="upload-prescription-btn" onclick="openPrescriptionScanner()">
+            <i class="fas fa-camera"></i> Scan Prescription
+        </button>
+        
+        <!-- AI DISEASE PREDICTOR ADDED HERE -->
+        <div class="ai-disease-predictor">
+            <div class="disease-header">
+                <i class="fas fa-heartbeat" style="font-size: 30px; color: #00ccff;"></i>
+                <div class="disease-title" id="diseaseTitle">AI Disease Predictor</div>
+            </div>
+            <div class="disease-message-box">
+                <div class="disease-message" id="diseaseMessage">Describe your symptoms and our AI will help predict possible conditions.</div>
+                <div class="symptoms-list" id="symptomsList"></div>
+                <div class="prediction-result" id="predictionResult" style="display: none;">
+                    <div class="prediction-title">Possible Conditions:</div>
+                    <div id="predictionItems"></div>
+                </div>
+            </div>
+            <div class="voice-input-container">
+                <button class="voice-input-btn" id="voiceInputBtn" onclick="toggleVoiceInput()">
+                    <i class="fas fa-microphone"></i> Speak Symptoms
+                </button>
+                <button class="predict-btn" id="predictBtn" onclick="predictDisease()" disabled>
+                    Predict Disease
+                </button>
+            </div>
+        </div>
+        
+        <!-- MOVED AI ASSISTANT TO TOP -->
+        <div class="ai-assistant">
+            <div class="ai-header">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#00ccff"/>
+                    <path d="M12 6C9.79 6 8 7.79 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 7.79 14.21 6 12 6ZM12 12C10.9 12 10 11.1 10 10C10 8.9 10.9 8 12 8C13.1 8 14 8.9 14 10C14 11.1 13.1 12 12 12Z" fill="#00ccff"/>
+                    <path d="M12 16C9.33 16 4 17.34 4 20V22H20V20C20 17.34 14.67 16 12 16ZM6 20C6.22 19.28 9.31 18 12 18C14.7 18 17.8 19.29 18 20H6Z" fill="#00ccff"/>
+                </svg>
+                <div class="ai-title" id="aiTitle">Ask AI Anything</div>
+            </div>
+            <div class="ai-chat-container" id="aiChatContainer">
+                <div class="ai-message bot-message" id="welcomeMessage">Hello! I'm your medicine assistant. Ask me anything about medicines - uses, side effects, precautions, or anything else!</div>
+            </div>
+            <div class="ai-input-container">
+                <input type="text" class="ai-input" id="aiQuery" placeholder="Type your question about medicines..." onkeypress="handleKeyPress(event)">
+                <button class="ai-submit-btn" onclick="askAboutMedicine()" id="askBtn">Ask</button>
+            </div>
+        </div>
+        
+        <!-- FEATURE BOXES MOVED BELOW AI ASSISTANT -->
+        <div class="feature-boxes">
+            <div class="feature-box" onclick="openMedicineOrder()">
+                <div class="feature-icon">💊</div>
+                <div class="feature-title" id="medicineTitle">Medicine Delivery</div>
+            </div>
+            <div class="feature-box" onclick="handleFeatureClick('doctorSection')">
+                <div class="feature-icon">👨‍⚕️</div>
+                <div class="feature-title" id="doctorTitle">Doctor Chat</div>
+            </div>
+            <div class="feature-box" onclick="handleFeatureClick('reminderSection')">
+                <div class="feature-icon">⏰</div>
+                <div class="feature-title" id="reminderTitle">Medicine Reminders</div>
+            </div>
+            <div class="feature-box" onclick="handleFeatureClick('loanSection')">
+                <div class="feature-icon">💰</div>
+                <div class="feature-title" id="loanTitle">Medical Loans</div>
+            </div>
+            <div class="feature-box" onclick="handleFeatureClick('labtestSection')">
+                <div class="feature-icon">🧪</div>
+                <div class="feature-title" id="labtestTitle">Lab Tests</div>
+            </div>
+            <div class="feature-box" onclick="handleFeatureClick('deliverySection')">
+                <div class="feature-icon">🚚</div>
+                <div class="feature-title" id="deliveryTitle">Delivery Tracking</div>
+            </div>
+            <div class="feature-box" onclick="openQRScanner()">
+                <div class="feature-icon">🔍</div>
+                <div class="feature-title" id="qrTitle">Medicine QR Check</div>
+            </div>
+            <div class="feature-box" onclick="openStudentStudy()">
+                <div class="feature-icon">📚</div>
+                <div class="feature-title" id="studyTitle">Medical Student Study</div>
+            </div>
+            <div class="feature-box" onclick="openFitnessTips()">
+                <div class="feature-icon">💪</div>
+                <div class="feature-title" id="fitnessTitle">Physical Fitness Tips</div>
+            </div>
+            <div class="feature-box" onclick="openAyurvedicInfo()">
+                <div class="feature-icon">🌿</div>
+                <div class="feature-title" id="ayurvedicTitle">Ayurvedic Medicines</div>
+            </div>
+            <div class="feature-box" onclick="openEmergencyOrganHelp()">
+                <div class="feature-icon">🆘</div>
+                <div class="feature-title" id="emergencyTitle">Emergency Organ Help</div>
+            </div>
+            <!-- ADDED MULTI CARE OPTIONS BUTTON -->
+            <div class="feature-box" onclick="openSecondHome()">
+                <div class="feature-icon">🏠</div>
+                <div class="feature-title" id="multiCareTitle">Multi Care Options</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MEDICINE ORDER PAGE -->
+    <div id="medicineOrderScreen" class="screen-container medicine-order">
+        <div class="order-header">
+            <button class="back-btn" onclick="closeMedicineOrder()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h2 class="order-title">Order Medicines</h2>
+            <p class="order-subtitle">Select medicines and delivery address</p>
+        </div>
+        
+        <div class="medicine-list" id="medicineList">
+            <!-- Medicine items will be added here by JavaScript -->
+        </div>
+        
+        <div class="order-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span>Delivery Charge:</span>
+                <span id="deliveryCharge">₹30</span>
+            </div>
+            <div class="summary-row total-row">
+                <span>Total:</span>
+                <span id="totalAmount">₹30</span>
+            </div>
+        </div>
+        
+        <div class="address-section">
+            <div class="address-title">Select Delivery Address</div>
+            <div id="savedAddresses">
+                <!-- Saved addresses will be added here by JavaScript -->
+            </div>
+            <button class="new-address-btn" onclick="showNewAddressForm()">
+                <i class="fas fa-plus"></i> Add New Address
+            </button>
+            
+            <div class="new-address-form" id="newAddressForm">
+                <div class="input-group">
+                    <label>Full Name</label>
+                    <input type="text" id="addressName" placeholder="Enter your full name">
+                </div>
+                <div class="input-group">
+                    <label>Mobile Number</label>
+                    <input type="text" id="addressMobile" placeholder="Enter your mobile number">
+                </div>
+                <div class="input-group">
+                    <label>Address</label>
+                    <textarea id="addressText" placeholder="Enter your complete address"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Landmark (Optional)</label>
+                    <input type="text" id="addressLandmark" placeholder="Enter nearby landmark">
+                </div>
+                <div class="input-group">
+                    <label>Pincode</label>
+                    <input type="text" id="addressPincode" placeholder="Enter pincode">
+                </div>
+                <div class="form-actions">
+                    <button class="form-btn cancel-btn" onclick="hideNewAddressForm()">Cancel</button>
+                    <button class="form-btn save-btn" onclick="saveAddress()">Save Address</button>
+                </div>
+            </div>
+        </div>
+        
+        <button class="place-order-btn" id="placeOrderBtn" onclick="placeOrder()" disabled>
+            Place Order
+        </button>
+        
+        <div class="success-message" id="successMessage">
+            <div class="success-icon">✓</div>
+            <h3>Order Placed Successfully!</h3>
+            <p>Your order has been confirmed and will be delivered soon.</p>
+            <p>Order details have been sent to your email.</p>
+            <button class="login-btn" style="margin-top: 15px;" onclick="closeMedicineOrder()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- SECOND HOME PAGE (FOURTH PAGE) -->
+    <div id="secondHomeScreen" class="screen-container second-home">
+        <div class="second-home-header">
+            <button class="back-btn" onclick="closeSecondHome()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h2 class="second-home-title">Additional Features and Services</h2>
+            <p class="second-home-subtitle">Explore our specialized care options</p>
+        </div>
+        
+        <div class="second-home-features">
+            <div class="second-home-feature" onclick="alert('Opening Order History')">
+                <div class="second-home-icon">📋</div>
+                <div class="second-home-title">Order History</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening Health Records')">
+                <div class="second-home-icon">📊</div>
+                <div class="second-home-title">Health Records</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Showing Nearby Hospitals')">
+                <div class="second-home-icon">🏥</div>
+                <div class="second-home-title">Nearby Hospitals</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening Medicine Refill')">
+                <div class="second-home-icon">🔄</div>
+                <div class="second-home-title">Medicine Refill</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening Elderly Care')">
+                <div class="second-home-icon">👴</div>
+                <div class="second-home-title">Elderly Care</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening Pregnancy Care')">
+                <div class="second-home-icon">🤰</div>
+                <div class="second-home-title">Pregnancy Care</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening Dental Care')">
+                <div class="second-home-icon">🦷</div>
+                <div class="second-home-title">Dental Care</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening Baby Care')">
+                <div class="second-home-icon">👶</div>
+                <div class="second-home-title">Baby Care</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening Mental Health')">
+                <div class="second-home-icon">🧠</div>
+                <div class="second-home-title">Mental Health</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening Nutrition')">
+                <div class="second-home-icon">🍎</div>
+                <div class="second-home-title">Nutrition</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening First Aid')">
+                <div class="second-home-icon">🩹</div>
+                <div class="second-home-title">First Aid</div>
+            </div>
+            <div class="second-home-feature" onclick="alert('Opening Appointments')">
+                <div class="second-home-icon">📅</div>
+                <div class="second-home-title">Appointments</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EMERGENCY ORGAN HELP PAGE (FIFTH PAGE) -->
+    <div id="organHelpScreen" class="screen-container organ-selection">
+        <div class="organ-header">
+            <button class="back-btn" onclick="closeOrganHelp()">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h2 class="organ-title">EMERGENCY ORGAN HELP</h2>
+            <p class="organ-subtitle">Select what you need help with</p>
+        </div>
+        
+        <button class="organ-btn" style="background-color: #D32F2F;" id="bloodBtn">
+            <i class="material-icons">bloodtype</i>
+            BLOOD DONATION
+        </button>
+        
+        <button class="organ-btn" style="background-color: #1976D2;" id="liverBtn">
+            <i class="material-icons">healing</i>
+            LIVER DONATION
+        </button>
+        
+        <button class="organ-btn" style="background-color: #7B1FA2;" id="kidneyBtn">
+            <i class="material-icons">c kidney</i>
+            KIDNEY DONATION
+        </button>
+    </div>
+
+    <!-- QR Code Scanner Modal -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 class="modal-title" id="modalTitle">Scan Medicine QR Code</h3>
+            <div class="qr-code-img" id="qrCodeDisplay">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=REAL_PHARMACY_AUTHENTIC_MEDICINE_12345" alt="Demo QR Code">
+            </div>
+            <div id="qrResult">
+                <p>This medicine is <strong style="color: #00ff00;">AUTHENTIC</strong></p>
+                <p>Medicine: Paracetamol 500mg</p>
+                <p>Batch No: PH12345</p>
+                <p>Expiry: 12/2025</p>
+            </div>
+            <button class="login-btn" style="margin-top: 15px;" onclick="scanAnother()">Scan Another</button>
+        </div>
+    </div>
+
+    <!-- Student Study Modal -->
+    <div id="studyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 class="modal-title">Medical Student Study Materials</h3>
+            <div style="text-align: left; margin-top: 15px;">
+                <h4 style="color: #00ccff;">Available Resources:</h4>
+                <ul>
+                    <li>Pharmacy textbooks (D.Pharm, B.Pharm)</li>
+                    <li>Medicine composition charts</li>
+                    <li>Drug interaction guides</li>
+                    <li>Pharmacology notes</li>
+                    <li>Latest medical research papers</li>
+                </ul>
+            </div>
+            <button class="login-btn" style="margin-top: 15px;" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Fitness Tips Modal -->
+    <div id="fitnessModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 class="modal-title">Physical Fitness Tips</h3>
+            <div style="text-align: left; margin-top: 15px;">
+                <h4 style="color: #00ccff;">Daily Health Tips:</h4>
+                <ul>
+                    <li>30 minutes of exercise daily</li>
+                    <li>Drink 8 glasses of water</li>
+                    <li>Balanced diet with proteins</li>
+                    <li>7-8 hours of sleep</li>
+                    <li>Regular health checkups</li>
+                </ul>
+            </div>
+            <button class="login-btn" style="margin-top: 15px;" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Ayurvedic Info Modal -->
+    <div id="ayurvedicModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 class="modal-title">Ayurvedic Medicine Information</h3>
+            <div style="text-align: left; margin-top: 15px;">
+                <h4 style="color: #00ccff;">Popular Ayurvedic Medicines:</h4>
+                <ul>
+                    <li>Ashwagandha - For stress relief</li>
+                    <li>Turmeric - Anti-inflammatory</li>
+                    <li>Triphala - Digestive health</li>
+                    <li>Giloy - Immunity booster</li>
+                    <li>Brahmi - Brain tonic</li>
+                </ul>
+            </div>
+            <button class="login-btn" style="margin-top: 15px;" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Prescription Scanner Modal -->
+    <div id="prescriptionScannerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3 class="modal-title">Scan Prescription</h3>
+            <div class="scanner-container">
+                <div class="scanner-frame"></div>
+                <div class="scanner-overlay"></div>
+                <div class="scanner-placeholder" id="scannerPlaceholder">
+                    <i class="fas fa-camera"></i>
+                    <p>Position the prescription within the frame</p>
+                </div>
+                <video id="scannerVideo" style="display: none; width: 100%; height: 100%; object-fit: cover;"></video>
+                <canvas id="scannerCanvas" style="display: none;"></canvas>
+            </div>
+            <button class="scan-btn" onclick="scanPrescription()">Scan Now</button>
+            <div class="scan-result" id="scanResult" style="display: none;">
+                <h4 style="color: #00ccff;">Prescription Detected:</h4>
+                <p><strong>Doctor:</strong> Dr. Sharma</p>
+                <p><strong>Date:</strong> 15/06/2023</p>
+                <p><strong>Medicines:</strong></p>
+                <ul>
+                    <li>Paracetamol 500mg - 1-0-1 (5 days)</li>
+                    <li>Azithromycin 250mg - 1-0-0 (3 days)</li>
+                    <li>Vitamin C - 0-0-1 (10 days)</li>
+                </ul>
+                <button class="login-btn" style="margin-top: 10px;" onclick="processPrescription()">Process Order</button>
+            </div>
+            <div class="scan-error" id="scanError" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i> 
+                <span>This doesn't appear to be a valid prescription. Please scan only doctor's prescriptions.</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language Translations (Manual) - Improved all translations
+        const translations = {
+            en: {
+                appTitle: "REAL PHARMACY",
+                appSubtitle: "Your trusted healthcare partner",
+                aiTitle: "Ask AI Anything",
+                aiMessage: "Hello! I'm your medicine assistant. Ask me anything about medicines - uses, side effects, precautions, or anything else!",
+                aiPlaceholder: "Type your question about medicines...",
+                askBtn: "Ask",
+                medicineTitle: "Medicine Delivery",
+                doctorTitle: "Doctor Chat",
+                reminderTitle: "Medicine Reminders",
+                loanTitle: "Medical Loans",
+                labtestTitle: "Lab Tests",
+                deliveryTitle: "Delivery Tracking",
+                qrTitle: "Medicine QR Check",
+                studyTitle: "Medical Student Study",
+                fitnessTitle: "Physical Fitness Tips",
+                ayurvedicTitle: "Ayurvedic Medicines",
+                emergencyTitle: "Emergency Organ Help",
+                multiCareTitle: "Multi Care Options",
+                uploadPrescription: "Scan Prescription",
+                loginError: "Please enter valid email and password (min 6 characters)",
+                secondHomeTitle: "Additional Features and Services",
+                secondHomeSubtitle: "Explore our specialized care options",
+                otpTitle: "OTP VERIFICATION",
+                otpLabel: "Enter OTP Sent to Your Mobile",
+                otpPlaceholder: "Enter 6-digit OTP",
+                verifyBtn: "VERIFY OTP",
+                resendText: "Resend OTP",
+                secureText: "Secure Login Process",
+                diseaseTitle: "AI Disease Predictor",
+                diseaseMessage: "Describe your symptoms and our AI will help predict possible conditions.",
+                speakSymptoms: "Speak Symptoms",
+                predictDisease: "Predict Disease",
+                possibleConditions: "Possible Conditions:",
+                welcomeMessage: "Welcome to Real Pharmacy! How can I help you today?",
+                orderTitle: "Order Medicines",
+                orderSubtitle: "Select medicines and delivery address",
+                selectAddress: "Select Delivery Address",
+                addNewAddress: "Add New Address",
+                placeOrder: "Place Order",
+                orderSuccess: "Order Placed Successfully!",
+                orderSuccessMessage: "Your order has been confirmed and will be delivered soon.",
+                orderEmailMessage: "Order details have been sent to your email."
+            },
+            hi: {
+                appTitle: "रियल फार्मेसी",
+                appSubtitle: "आपका विश्वसनीय स्वास्थ्य सहयोगी",
+                aiTitle: "AI से कुछ भी पूछें",
+                aiMessage: "नमस्ते! मैं आपका मेडिसिन असिस्टेंट हूँ। दवाओं के बारे में कुछ भी पूछें - उपयोग, साइड इफेक्ट्स, सावधानियाँ या कुछ और!",
+                aiPlaceholder: "दवाओं के बारे में अपना प्रश्न टाइप करें...",
+                askBtn: "पूछें",
+                medicineTitle: "दवा वितरण",
+                doctorTitle: "डॉक्टर चैट",
+                reminderTitle: "दवा अनुस्मारक",
+                loanTitle: "मेडिकल लोन",
+                labtestTitle: "लैब टेस्ट",
+                deliveryTitle: "डिलीवरी ट्रैकिंग",
+                qrTitle: "दवा QR जांच",
+                studyTitle: "मेडिकल छात्र अध्ययन",
+                fitnessTitle: "शारीरिक फिटनेस टिप्स",
+                ayurvedicTitle: "आयुर्वेदिक दवाएं",
+                emergencyTitle: "आपातकालीन अंग सहायता",
+                multiCareTitle: "बहु-देखभाल विकल्प",
+                uploadPrescription: "प्रिस्क्रिप्शन स्कैन करें",
+                loginError: "कृपया वैध ईमेल और पासवर्ड डालें (न्यूनतम 6 अक्षर)",
+                secondHomeTitle: "अतिरिक्त सुविधाएँ और सेवाएँ",
+                secondHomeSubtitle: "हमारे विशेष देखभाल विकल्पों का अन्वेषण करें",
+                otpTitle: "OTP सत्यापन",
+                otpLabel: "आपके मोबाइल पर भेजा गया OTP दर्ज करें",
+                otpPlaceholder: "6 अंकों का OTP दर्ज करें",
+                verifyBtn: "OTP सत्यापित करें",
+                resendText: "OTP पुनः भेजें",
+                secureText: "सुरक्षित लॉगिन प्रक्रिया",
+                diseaseTitle: "AI रोग भविष्यवक्ता",
+                diseaseMessage: "अपने लक्षणों का वर्णन करें और हमारी AI संभावित स्थितियों की भविष्यवाणी करने में मदद करेगी।",
+                speakSymptoms: "लक्षण बोलें",
+                predictDisease: "रोग की भविष्यवाणी करें",
+                possibleConditions: "संभावित स्थितियाँ:",
+                welcomeMessage: "रियल फार्मेसी में आपका स्वागत है! मैं आपकी क्या मदद कर सकता हूँ?",
+                orderTitle: "दवाएं ऑर्डर करें",
+                orderSubtitle: "दवाएं चुनें और डिलीवरी का पता चुनें",
+                selectAddress: "डिलीवरी का पता चुनें",
+                addNewAddress: "नया पता जोड़ें",
+                placeOrder: "ऑर्डर दें",
+                orderSuccess: "ऑर्डर सफलतापूर्वक दिया गया!",
+                orderSuccessMessage: "आपका ऑर्डर कन्फर्म हो गया है और जल्द ही डिलीवर कर दिया जाएगा।",
+                orderEmailMessage: "ऑर्डर की जानकारी आपके ईमेल पर भेज दी गई है।"
+            },
+            // Other languages translations would follow same pattern...
+        };
+
+        // Medicine knowledge base in English and Hindi
+        const medicineKnowledge = {
+            "paracetamol": {
+                en: {
+                    name: "Paracetamol",
+                    uses: "Used to treat pain and fever. It's commonly used for headaches, muscle aches, arthritis, backache, toothaches, colds, and fevers.",
+                    sideEffects: "Side effects are rare but may include skin rash, blood disorders, and liver damage if taken in excess.",
+                    precautions: "Do not exceed the recommended dose. Avoid alcohol. Consult doctor if pregnant or breastfeeding."
+                },
+                hi: {
+                    name: "पेरासिटामोल",
+                    uses: "दर्द और बुखार के इलाज के लिए उपयोग किया जाता है। यह आमतौर पर सिरदर्द, मांसपेशियों में दर्द, गठिया, कमर दर्द, दांत दर्द, सर्दी और बुखार के लिए उपयोग किया जाता है।",
+                    sideEffects: "साइड इफेक्ट दुर्लभ हैं लेकिन अधिक मात्रा में लेने पर त्वचा पर चकत्ते, रक्त विकार और लीवर को नुकसान हो सकता है।",
+                    precautions: "अनुशंसित खुराक से अधिक न लें। शराब से बचें। गर्भवती या स्तनपान कराने वाली महिलाएं डॉक्टर से सलाह लें।"
+                }
+            },
+            "ibuprofen": {
+                en: {
+                    name: "Ibuprofen",
+                    uses: "Used to relieve pain from various conditions like headache, dental pain, menstrual cramps, muscle aches, or arthritis. Also reduces fever.",
+                    sideEffects: "May cause stomach pain, heartburn, dizziness, or headache. Serious side effects include kidney problems and increased risk of heart attack.",
+                    precautions: "Do not use if allergic to aspirin. Avoid alcohol. Not recommended in last trimester of pregnancy."
+                },
+                hi: {
+                    name: "आइबुप्रोफेन",
+                    uses: "सिरदर्द, दांत दर्द, मासिक धर्म में ऐंठन, मांसपेशियों में दर्द या गठिया जैसी विभिन्न स्थितियों से दर्द से राहत के लिए उपयोग किया जाता है। बुखार को भी कम करता है।",
+                    sideEffects: "पेट दर्द, सीने में जलन, चक्कर आना या सिरदर्द हो सकता है। गंभीर दुष्प्रभावों में किडनी की समस्याएं और हृदयाघात का खतरा शामिल है।",
+                    precautions: "अगर एस्पिरिन से एलर्जी है तो उपयोग न करें। शराब से बचें। गर्भावस्था की अंतिम तिमाही में अनुशंसित नहीं है।"
+                }
+            },
+            "amoxicillin": {
+                en: {
+                    name: "Amoxicillin",
+                    uses: "Antibiotic used to treat bacterial infections like pneumonia, bronchitis, ear infections, and urinary tract infections.",
+                    sideEffects: "May cause diarrhea, nausea, vomiting, or skin rash. Serious allergic reactions are rare but possible.",
+                    precautions: "Complete the full course even if symptoms improve. Inform doctor about any allergies."
+                },
+                hi: {
+                    name: "एमोक्सिसिलिन",
+                    uses: "निमोनिया, ब्रोंकाइटिस, कान के संक्रमण और मूत्र पथ के संक्रमण जैसे बैक्टीरियल संक्रमण के इलाज के लिए एंटीबायोटिक।",
+                    sideEffects: "दस्त, मतली, उल्टी या त्वचा पर चकत्ते हो सकते हैं। गंभीर एलर्जी प्रतिक्रियाएं दुर्लभ हैं लेकिन संभव हैं।",
+                    precautions: "लक्षणों में सुधार होने पर भी पूरा कोर्स पूरा करें। किसी भी एलर्जी के बारे में डॉक्टर को सूचित करें।"
+                }
+            },
+            "omeprazole": {
+                en: {
+                    name: "Omeprazole",
+                    uses: "Used to treat acid reflux, heartburn, and stomach ulcers. Reduces stomach acid production.",
+                    sideEffects: "May cause headache, diarrhea, stomach pain, or nausea. Long-term use may increase risk of bone fractures.",
+                    precautions: "Take before meals. Inform doctor if experiencing persistent diarrhea or new/worsening joint pain."
+                },
+                hi: {
+                    name: "ओमेप्राजोल",
+                    uses: "एसिड रिफ्लक्स, सीने में जलन और पेट के अल्सर के इलाज के लिए उपयोग किया जाता है। पेट के एसिड उत्पादन को कम करता है।",
+                    sideEffects: "सिरदर्द, दस्त, पेट दर्द या मतली हो सकती है। लंबे समय तक उपयोग से हड्डी फ्रैक्चर का खतरा बढ़ सकता है।",
+                    precautions: "भोजन से पहले लें। अगर लगातार दस्त या नए/बिगड़ते जोड़ों के दर्द का अनुभव हो तो डॉक्टर को सूचित करें।"
+                }
+            },
+            "atorvastatin": {
+                en: {
+                    name: "Atorvastatin",
+                    uses: "Used to lower cholesterol and reduce risk of heart attack and stroke in high-risk patients.",
+                    sideEffects: "May cause muscle pain, digestive problems, or liver enzyme abnormalities. Rarely can cause serious muscle problems.",
+                    precautions: "Avoid grapefruit. Inform doctor about any unexplained muscle pain or weakness."
+                },
+                hi: {
+                    name: "एटोरवास्टेटिन",
+                    uses: "कोलेस्ट्रॉल कम करने और उच्च जोखिम वाले रोगियों में हृदयाघात और स्ट्रोक के जोखिम को कम करने के लिए उपयोग किया जाता है।",
+                    sideEffects: "मांसपेशियों में दर्द, पाचन संबंधी समस्याएं या लीवर एंजाइम असामान्यताएं हो सकती हैं। कभी-कभी गंभीर मांसपेशियों की समस्याएं पैदा कर सकता है।",
+                    precautions: "अंगूर से बचें। किसी भी अस्पष्टीकृत मांसपेशियों में दर्द या कमजोरी के बारे में डॉक्टर को सूचित करें।"
+                }
+            }
+        };
+
+        // Disease prediction data
+        const diseaseData = {
+            "fever": ["Common Cold", "Flu", "COVID-19", "Dengue"],
+            "headache": ["Migraine", "Tension Headache", "Sinusitis", "Hypertension"],
+            "cough": ["Common Cold", "Flu", "COVID-19", "Bronchitis"],
+            "fatigue": ["Anemia", "Depression", "Hypothyroidism", "Chronic Fatigue Syndrome"],
+            "nausea": ["Food Poisoning", "Migraine", "Pregnancy", "Gastroenteritis"],
+            "joint pain": ["Arthritis", "Lupus", "Fibromyalgia", "Lyme Disease"],
+            "chest pain": ["Heart Attack", "Angina", "Acid Reflux", "Pneumonia"],
+            "abdominal pain": ["Appendicitis", "Gallstones", "Irritable Bowel Syndrome", "Food Poisoning"],
+            "shortness of breath": ["Asthma", "COPD", "Heart Failure", "Anxiety"],
+            "dizziness": ["Vertigo", "Low Blood Pressure", "Anemia", "Dehydration"]
+        };
+
+        // Medicine data for ordering
+        const medicineData = [
+            { id: 1, name: "Paracetamol 500mg", price: 25, description: "For fever and pain relief" },
+            { id: 2, name: "Ibuprofen 400mg", price: 35, description: "For pain and inflammation" },
+            { id: 3, name: "Amoxicillin 250mg", price: 120, description: "Antibiotic for infections" },
+            { id: 4, name: "Omeprazole 20mg", price: 85, description: "For acid reflux and heartburn" },
+            { id: 5, name: "Cetirizine 10mg", price: 30, description: "For allergies and cold" },
+            { id: 6, name: "Vitamin C 500mg", price: 45, description: "Immunity booster" }
+        ];
+
+        // Global variables for order management
+        let cart = [];
+        let selectedAddress = null;
+        let userAddresses = [];
+
+        // Improved Login Validation
+        function validateLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            
+            // Reset errors
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                emailError.style.display = 'block';
+                return;
+            }
+            
+            // Password validation (min 6 chars)
+            if (password.length < 6) {
+                passwordError.style.display = 'block';
+                return;
+            }
+            
+            // If valid, proceed to OTP verification
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('otpScreen').style.display = 'block';
+            
+            // In a real app, you would send OTP to user's mobile here
+            console.log("OTP would be sent to user's mobile in real implementation");
+        }
+        
+        // Add new OTP validation function
+        function validateOTP() {
+            const otp = document.getElementById('otp').value;
+            const otpError = document.getElementById('otpError');
+            
+            otpError.style.display = 'none';
+            
+            // Simple validation - check if 6 digits
+            if (!/^\d{6}$/.test(otp)) {
+                otpError.style.display = 'block';
+                return;
+            }
+            
+            // In a real app, you would verify OTP with backend here
+            // For demo, we'll just proceed if it's 6 digits
+            document.getElementById('otpScreen').style.display = 'none';
+            document.getElementById('languageScreen').style.display = 'block';
+        }
+        
+        // Add function to resend OTP
+        function resendOTP() {
+            // In a real app, this would resend the OTP
+            alert("OTP has been resent to your registered mobile number");
+        }
+
+        // Language selection function
+        function selectLanguage(lang) {
+            // Store selected language
+            localStorage.setItem('selectedLanguage', lang);
+            
+            // Show app screen
+            document.getElementById('languageScreen').style.display = 'none';
+            document.getElementById('appScreen').style.display = 'block';
+            
+            // Update all text elements
+            updateLanguage(lang);
+            
+            // Show welcome message in selected language
+            const welcomeMessage = translations[lang]?.welcomeMessage || translations['en'].welcomeMessage;
+            document.getElementById('welcomeMessage').textContent = welcomeMessage;
+        }
+        
+        // Update all text elements based on language
+        function updateLanguage(lang) {
+            const langData = translations[lang] || translations['en'];
+            
+            // Update each element
+            document.getElementById('appTitle').textContent = langData.appTitle;
+            document.getElementById('appSubtitle').textContent = langData.appSubtitle;
+            document.getElementById('aiTitle').textContent = langData.aiTitle;
+            document.getElementById('welcomeMessage').textContent = langData.aiMessage;
+            document.getElementById('aiQuery').placeholder = langData.aiPlaceholder;
+            document.getElementById('askBtn').textContent = langData.askBtn;
+            document.getElementById('medicineTitle').textContent = langData.medicineTitle;
+            document.getElementById('doctorTitle').textContent = langData.doctorTitle;
+            document.getElementById('reminderTitle').textContent = langData.reminderTitle;
+            document.getElementById('loanTitle').textContent = langData.loanTitle;
+            document.getElementById('labtestTitle').textContent = langData.labtestTitle;
+            document.getElementById('deliveryTitle').textContent = langData.deliveryTitle;
+            document.getElementById('qrTitle').textContent = langData.qrTitle;
+            document.getElementById('studyTitle').textContent = langData.studyTitle;
+            document.getElementById('fitnessTitle').textContent = langData.fitnessTitle;
+            document.getElementById('ayurvedicTitle').textContent = langData.ayurvedicTitle;
+            document.getElementById('emergencyTitle').textContent = langData.emergencyTitle;
+            document.getElementById('multiCareTitle').textContent = langData.multiCareTitle;
+            document.querySelector('.upload-prescription-btn i').nextSibling.textContent = ' ' + langData.uploadPrescription;
+            document.getElementById('diseaseTitle').textContent = langData.diseaseTitle;
+            document.getElementById('diseaseMessage').textContent = langData.diseaseMessage;
+            document.getElementById('voiceInputBtn').innerHTML = `<i class="fas fa-microphone"></i> ${langData.speakSymptoms}`;
+            document.getElementById('predictBtn').textContent = langData.predictDisease;
+            
+            // Update OTP screen elements if it exists
+            if (document.getElementById('otpScreen')) {
+                document.querySelector('#otpScreen .login-title').textContent = langData.otpTitle;
+                document.querySelector('#otpScreen .input-group label').textContent = langData.otpLabel;
+                document.getElementById('otp').placeholder = langData.otpPlaceholder;
+                document.querySelector('#otpScreen .login-btn').textContent = langData.verifyBtn;
+                document.querySelector('#otpScreen .register-link').textContent = langData.resendText;
+                document.querySelector('#otpScreen .subtext').textContent = langData.secureText;
+            }
+            
+            // Update second home page elements if it exists
+            if (document.getElementById('secondHomeScreen')) {
+                document.querySelector('.second-home-title').textContent = langData.secondHomeTitle;
+                document.querySelector('.second-home-subtitle').textContent = langData.secondHomeSubtitle;
+            }
+            
+            // Update medicine order page elements if it exists
+            if (document.getElementById('medicineOrderScreen')) {
+                document.querySelector('.order-title').textContent = langData.orderTitle;
+                document.querySelector('.order-subtitle').textContent = langData.orderSubtitle;
+                document.querySelector('.address-title').textContent = langData.selectAddress;
+                document.querySelector('.new-address-btn').innerHTML = `<i class="fas fa-plus"></i> ${langData.addNewAddress}`;
+                document.getElementById('placeOrderBtn').textContent = langData.placeOrder;
+                document.querySelector('#successMessage h3').textContent = langData.orderSuccess;
+                document.querySelector('#successMessage p:nth-child(3)').textContent = langData.orderSuccessMessage;
+                document.querySelector('#successMessage p:nth-child(4)').textContent = langData.orderEmailMessage;
+            }
+        }
+        
+        // AI Assistant Function - Improved with Hindi/English support
+        function askAboutMedicine() {
+            const query = document.getElementById('aiQuery').value.toLowerCase();
+            if (!query) return;
+            
+            const lang = localStorage.getItem('selectedLanguage') || 'en';
+            const chatContainer = document.getElementById('aiChatContainer');
+            
+            // Add user message to chat
+            const userMessage = document.createElement('div');
+            userMessage.className = 'ai-message user-message';
+            userMessage.textContent = query;
+            chatContainer.appendChild(userMessage);
+            
+            // Clear input
+            document.getElementById('aiQuery').value = '';
+            
+            // Show typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'ai-message bot-message';
+            typingIndicator.innerHTML = '<div class="typing-indicator"><span></span><span></span><span></span></div>';
+            chatContainer.appendChild(typingIndicator);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // Simulate AI thinking delay
+            setTimeout(() => {
+                // Remove typing indicator
+                chatContainer.removeChild(typingIndicator);
+                
+                // Create bot response
+                const botMessage = document.createElement('div');
+                botMessage.className = 'ai-message bot-message';
+                
+                // Check if query matches any medicine in knowledge base
+                let found = false;
+                for (const [key, value] of Object.entries(medicineKnowledge)) {
+                    if (query.includes(key)) {
+                        const info = value[lang] || value['en'];
+                        botMessage.innerHTML = `
+                            <strong>${info.name}:</strong><br>
+                            <strong>${lang === 'hi' ? 'उपयोग' : 'Uses'}:</strong> ${info.uses}<br>
+                            <strong>${lang === 'hi' ? 'दुष्प्रभाव' : 'Side Effects'}:</strong> ${info.sideEffects}<br>
+                            <strong>${lang === 'hi' ? 'सावधानियां' : 'Precautions'}:</strong> ${info.precautions}
+                        `;
+                        found = true;
+                        break;
+                    }
+                }
+                
+                // If no specific medicine found, provide generic response
+                if (!found) {
+                    if (lang === 'hi') {
+                        botMessage.textContent = "माफ कीजिए, मैं आपके प्रश्न को पूरी तरह से समझ नहीं पाया। कृपया किसी विशिष्ट दवा के बारे में पूछें जैसे 'पेरासिटामोल के बारे में बताएं' या 'आइबुप्रोफेन के साइड इफेक्ट्स क्या हैं?'";
+                    } else {
+                        botMessage.textContent = "I'm sorry, I didn't fully understand your question. Please ask about a specific medicine like 'tell me about paracetamol' or 'what are the side effects of ibuprofen?'";
+                    }
+                }
+                
+                chatContainer.appendChild(botMessage);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 1500);
+        }
+        
+        // Handle Enter key press in AI input
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                askAboutMedicine();
+            }
+        }
+
+        // Handle feature button clicks
+        function handleFeatureClick(sectionId) {
+            // Just show a visual feedback without any error
+            const button = event.currentTarget;
+            button.style.transform = "scale(0.95)";
+            button.style.boxShadow = "0 2px 10px rgba(0, 204, 255, 0.6)";
+            
+            setTimeout(() => {
+                button.style.transform = "";
+                button.style.boxShadow = "";
+            }, 200);
+            
+            console.log("Selected section:", sectionId);
+        }
+
+        // Open Medicine Order Page
+        function openMedicineOrder() {
+            document.getElementById('appScreen').style.display = 'none';
+            document.getElementById('medicineOrderScreen').style.display = 'block';
+            
+            // Load saved addresses
+            loadSavedAddresses();
+            
+            // Initialize medicine list
+            initializeMedicineList();
+            
+            // Update order summary
+            updateOrderSummary();
+        }
+
+        // Close Medicine Order Page
+        function closeMedicineOrder() {
+            document.getElementById('medicineOrderScreen').style.display = 'none';
+            document.getElementById('appScreen').style.display = 'block';
+            
+            // Reset success message
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        // Initialize medicine list
+        function initializeMedicineList() {
+            const medicineList = document.getElementById('medicineList');
+            medicineList.innerHTML = '';
+            
+            medicineData.forEach(medicine => {
+                const medicineItem = document.createElement('div');
+                medicineItem.className = 'medicine-item';
+                medicineItem.innerHTML = `
+                    <div>
+                        <div class="medicine-name">${medicine.name}</div>
+                        <div class="medicine-description">${medicine.description}</div>
+                        <div class="medicine-price">₹${medicine.price}</div>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="quantity-btn" onclick="decreaseQuantity(${medicine.id})">-</button>
+                        <span class="quantity" id="quantity-${medicine.id}">0</span>
+                        <button class="quantity-btn" onclick="increaseQuantity(${medicine.id})">+</button>
+                    </div>
+                `;
+                medicineList.appendChild(medicineItem);
+            });
+        }
+
+        // Increase medicine quantity
+        function increaseQuantity(medicineId) {
+            const medicine = medicineData.find(m => m.id === medicineId);
+            const cartItem = cart.find(item => item.id === medicineId);
+            
+            if (cartItem) {
+                cartItem.quantity++;
+            } else {
+                cart.push({
+                    id: medicineId,
+                    name: medicine.name,
+                    price: medicine.price,
+                    quantity: 1
+                });
+            }
+            
+            document.getElementById(`quantity-${medicineId}`).textContent = 
+                cart.find(item => item.id === medicineId)?.quantity || 0;
+            
+            updateOrderSummary();
+        }
+
+        // Decrease medicine quantity
+        function decreaseQuantity(medicineId) {
+            const cartItem = cart.find(item => item.id === medicineId);
+            
+            if (cartItem) {
+                cartItem.quantity--;
+                
+                if (cartItem.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== medicineId);
+                }
+                
+                document.getElementById(`quantity-${medicineId}`).textContent = 
+                    cart.find(item => item.id === medicineId)?.quantity || 0;
+                
+                updateOrderSummary();
+            }
+        }
+
+        // Update order summary
+        function updateOrderSummary() {
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const deliveryCharge = 30;
+            const total = subtotal + deliveryCharge;
+            
+            document.getElementById('subtotal').textContent = `₹${subtotal}`;
+            document.getElementById('totalAmount').textContent = `₹${total}`;
+            
+            // Enable/disable place order button
+            document.getElementById('placeOrderBtn').disabled = cart.length === 0 || selectedAddress === null;
+        }
+
+        // Load saved addresses from localStorage
+        function loadSavedAddresses() {
+            const savedAddresses = localStorage.getItem('userAddresses');
+            userAddresses = savedAddresses ? JSON.parse(savedAddresses) : [];
+            
+            const savedAddressesContainer = document.getElementById('savedAddresses');
+            savedAddressesContainer.innerHTML = '';
+            
+            if (userAddresses.length === 0) {
+                savedAddressesContainer.innerHTML = '<p>No saved addresses. Please add a new address.</p>';
+                return;
+            }
+            
+            userAddresses.forEach((address, index) => {
+                const addressElement = document.createElement('div');
+                addressElement.className = 'saved-address';
+                if (selectedAddress && selectedAddress.id === address.id) {
+                    addressElement.classList.add('selected');
+                }
+                
+                addressElement.innerHTML = `
+                    <div>
+                        <strong>${address.name}</strong>
+                        <p>${address.mobile}</p>
+                        <p>${address.address}</p>
+                        <p>${address.landmark ? `Landmark: ${address.landmark}` : ''}</p>
+                        <p>Pincode: ${address.pincode}</p>
+                    </div>
+                    <div class="address-actions">
+                        <button class="address-action-btn" onclick="selectAddress(${index})">Select</button>
+                        <button class="address-action-btn" onclick="deleteAddress(${index})">Delete</button>
+                    </div>
+                `;
+                
+                savedAddressesContainer.appendChild(addressElement);
+            });
+        }
+
+        // Show new address form
+        function showNewAddressForm() {
+            document.getElementById('newAddressForm').style.display = 'block';
+        }
+
+        // Hide new address form
+        function hideNewAddressForm() {
+            document.getElementById('newAddressForm').style.display = 'none';
+            // Clear form fields
+            document.getElementById('addressName').value = '';
+            document.getElementById('addressMobile').value = '';
+            document.getElementById('addressText').value = '';
+            document.getElementById('addressLandmark').value = '';
+            document.getElementById('addressPincode').value = '';
+        }
+
+        // Save new address
+        function saveAddress() {
+            const name = document.getElementById('addressName').value.trim();
+            const mobile = document.getElementById('addressMobile').value.trim();
+            const address = document.getElementById('addressText').value.trim();
+            const landmark = document.getElementById('addressLandmark').value.trim();
+            const pincode = document.getElementById('addressPincode').value.trim();
+            
+            // Basic validation
+            if (!name || !mobile || !address || !pincode) {
+                alert('Please fill all required fields');
+                return;
+            }
+            
+            if (!/^\d{10}$/.test(mobile)) {
+                alert('Please enter a valid 10-digit mobile number');
+                return;
+            }
+            
+            if (!/^\d{6}$/.test(pincode)) {
+                alert('Please enter a valid 6-digit pincode');
+                return;
+            }
+            
+            const newAddress = {
+                id: Date.now(), // Simple ID generation
+                name,
+                mobile,
+                address,
+                landmark,
+                pincode
+            };
+            
+            userAddresses.push(newAddress);
+            localStorage.setItem('userAddresses', JSON.stringify(userAddresses));
+            
+            // Select the new address
+            selectAddress(userAddresses.length - 1);
+            
+            // Hide the form and reload addresses
+            hideNewAddressForm();
+            loadSavedAddresses();
+            
+            alert('Address saved successfully!');
+        }
+
+        // Select address
+        function selectAddress(index) {
+            selectedAddress = userAddresses[index];
+            loadSavedAddresses();
+            updateOrderSummary();
+        }
+
+        // Delete address
+        function deleteAddress(index) {
+            if (confirm('Are you sure you want to delete this address?')) {
+                userAddresses.splice(index, 1);
+                localStorage.setItem('userAddresses', JSON.stringify(userAddresses));
+                
+                if (selectedAddress && selectedAddress.id === userAddresses[index]?.id) {
+                    selectedAddress = null;
+                }
+                
+                loadSavedAddresses();
+                updateOrderSummary();
+            }
+        }
+
+        // Place order
+        function placeOrder() {
+            if (cart.length === 0) {
+                alert('Please add at least one medicine to your cart');
+                return;
+            }
+            
+            if (!selectedAddress) {
+                alert('Please select a delivery address');
+                return;
+            }
+            
+            // Calculate order total
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            const deliveryCharge = 30;
+            const total = subtotal + deliveryCharge;
+            
+            // Get user email
+            const userEmail = document.getElementById('email').value;
+            
+            // Prepare order data for email
+            const orderData = {
+                email: userEmail,
+                orderId: 'ORD' + Date.now(),
+                items: cart,
+                address: selectedAddress,
+                subtotal: subtotal,
+                deliveryCharge: deliveryCharge,
+                total: total,
+                orderDate: new Date().toLocaleString()
+            };
+            
+            // Send order to Formspree
+            sendOrderToEmail(orderData);
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Reset cart
+            cart = [];
+            initializeMedicineList();
+            updateOrderSummary();
+        }
+
+        // Send order to email using Formspree
+        function sendOrderToEmail(orderData) {
+            // Format order details for email
+            const orderItems = orderData.items.map(item => 
+                `${item.name} - ₹${item.price} x ${item.quantity} = ₹${item.price * item.quantity}`
+            ).join('\n');
+            
+            const addressDetails = `
+                ${orderData.address.name}
+                ${orderData.address.mobile}
+                ${orderData.address.address}
+                ${orderData.address.landmark ? `Landmark: ${orderData.address.landmark}` : ''}
+                Pincode: ${orderData.address.pincode}
+            `;
+            
+            // Prepare form data for Formspree
+            const formData = new FormData();
+            formData.append('email', orderData.email);
+            formData.append('orderId', orderData.orderId);
+            formData.append('items', orderItems);
+            formData.append('address', addressDetails);
+            formData.append('subtotal', `₹${orderData.subtotal}`);
+            formData.append('deliveryCharge', `₹${orderData.deliveryCharge}`);
+            formData.append('total', `₹${orderData.total}`);
+            formData.append('orderDate', orderData.orderDate);
+            
+            // Send to Formspree
+            fetch('https://formspree.io/f/xovebyjq', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Order details sent successfully to email');
+                } else {
+                    console.error('Failed to send order details to email');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending order details:', error);
+            });
+        }
+
+        // Open Second Home Page
+        function openSecondHome() {
+            document.getElementById('appScreen').style.display = 'none';
+            document.getElementById('secondHomeScreen').style.display = 'block';
+        }
+
+        // Close Second Home Page
+        function closeSecondHome() {
+            document.getElementById('secondHomeScreen').style.display = 'none';
+            document.getElementById('appScreen').style.display = 'block';
+        }
+
+        // Open Emergency Organ Help Page
+        function openEmergencyOrganHelp() {
+            document.getElementById('appScreen').style.display = 'none';
+            document.getElementById('organHelpScreen').style.display = 'block';
+            
+            // Set up organ button click handlers
+            document.getElementById('bloodBtn').onclick = function() {
+                alert("Connecting you with nearby blood donors...");
+            };
+            
+            document.getElementById('liverBtn').onclick = function() {
+                alert("Connecting you with liver transplant centers...");
+            };
+            
+            document.getElementById('kidneyBtn').onclick = function() {
+                alert("Connecting you with kidney transplant centers...");
+            };
+        }
+
+        // Close Emergency Organ Help Page
+        function closeOrganHelp() {
+            document.getElementById('organHelpScreen').style.display = 'none';
+            document.getElementById('appScreen').style.display = 'block';
+        }
+
+        // Modal Functions
+        function openQRScanner() {
+            document.getElementById('qrModal').style.display = 'block';
+        }
+
+        function openStudentStudy() {
+            document.getElementById('studyModal').style.display = 'block';
+        }
+
+        function openFitnessTips() {
+            document.getElementById('fitnessModal').style.display = 'block';
+        }
+
+        function openAyurvedicInfo() {
+            document.getElementById('ayurvedicModal').style.display = 'block';
+        }
+
+        // PRESCRIPTION SCANNER FUNCTIONS
+        function openPrescriptionScanner() {
+            document.getElementById('prescriptionScannerModal').style.display = 'block';
+            document.getElementById('scanResult').style.display = 'none';
+            document.getElementById('scanError').style.display = 'none';
+            
+            // In a real app, this would initialize the camera
+            // For demo, we'll just show the placeholder
+            document.getElementById('scannerPlaceholder').style.display = 'flex';
+            document.getElementById('scannerVideo').style.display = 'none';
+        }
+
+        function scanPrescription() {
+            // In a real app, this would capture image from camera
+            // For demo, we'll simulate scanning with random success/failure
+            
+            // Hide placeholder and show "scanning" animation
+            document.getElementById('scannerPlaceholder').style.display = 'none';
+            
+        // Show scanning animation
+            const scannerOverlay = document.querySelector('.scanner-overlay');
+            scannerOverlay.style.animation = 'scanAnimation 2s linear';
+            
+            // After delay, show result
+            setTimeout(() => {
+                scannerOverlay.style.animation = '';
+                
+                // Randomly show success or error for demo
+                if (Math.random() > 0.3) { // 70% chance of success
+                    document.getElementById('scanResult').style.display = 'block';
+                } else {
+                    document.getElementById('scanError').style.display = 'block';
+                }
+            }, 2000);
+        }
+
+        function processPrescription() {
+            alert("Prescription processed successfully! Your medicines will be delivered soon.");
+            closeModal();
+        }
+
+        function closeModal() {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                modal.style.display = 'none';
+            });
+        }
+
+        function scanAnother() {
+            // In a real app, this would reset the scanner
+            alert("Scanner reset. Ready to scan another medicine.");
+            closeModal();
+        }
+
+        // AI Disease Predictor Functions
+        let isListening = false;
+        let recognition;
+        let symptoms = [];
+
+        function toggleVoiceInput() {
+            const voiceBtn = document.getElementById('voiceInputBtn');
+            
+            if (!isListening) {
+                startVoiceRecognition();
+                voiceBtn.innerHTML = '<div class="listen-animation"><span></span><span></span><span></span><span></span></div> Stop Listening';
+                voiceBtn.classList.add('stop');
+            } else {
+                stopVoiceRecognition();
+                voiceBtn.innerHTML = '<i class="fas fa-microphone"></i> Speak Symptoms';
+                voiceBtn.classList.remove('stop');
+            }
+            
+            isListening = !isListening;
+        }
+
+        function startVoiceRecognition() {
+            // Check if browser supports speech recognition
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert("Your browser doesn't support speech recognition. Please try Chrome or Edge.");
+                return;
+            }
+
+            // Create recognition object
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new SpeechRecognition();
+            
+            // Configure recognition
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            
+            // Get current language
+            const lang = localStorage.getItem('selectedLanguage') || 'en';
+            recognition.lang = lang === 'hi' ? 'hi-IN' : 'en-US';
+            
+            // Handle results
+            recognition.onresult = function(event) {
+                const transcript = Array.from(event.results)
+                    .map(result => result[0])
+                    .map(result => result.transcript)
+                    .join('');
+                
+                document.getElementById('diseaseMessage').textContent = transcript;
+            };
+            
+            // Handle errors
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error', event.error);
+                stopVoiceRecognition();
+            };
+            
+            // Start recognition
+            recognition.start();
+        }
+
+        function stopVoiceRecognition() {
+            if (recognition) {
+                recognition.stop();
+            }
+            
+            // Add the spoken symptoms to the list
+            const symptomText = document.getElementById('diseaseMessage').textContent;
+            if (symptomText && symptomText !== "Describe your symptoms and our AI will help predict possible conditions.") {
+                symptoms.push(symptomText);
+                updateSymptomsList();
+                document.getElementById('diseaseMessage').textContent = translations[localStorage.getItem('selectedLanguage') || 'en'].diseaseMessage;
+            }
+            
+            // Enable predict button if we have symptoms
+            document.getElementById('predictBtn').disabled = symptoms.length === 0;
+        }
+
+        function updateSymptomsList() {
+            const symptomsList = document.getElementById('symptomsList');
+            symptomsList.innerHTML = '';
+            
+            symptoms.forEach((symptom, index) => {
+                const item = document.createElement('div');
+                item.className = 'symptom-item';
+                item.innerHTML = `
+                    <span>${symptom}</span>
+                    <span class="remove-symptom" onclick="removeSymptom(${index})">&times;</span>
+                `;
+                symptomsList.appendChild(item);
+            });
+        }
+
+        function removeSymptom(index) {
+            symptoms.splice(index, 1);
+            updateSymptomsList();
+            document.getElementById('predictBtn').disabled = symptoms.length === 0;
+            
+            // Hide prediction result if no symptoms left
+            if (symptoms.length === 0) {
+                document.getElementById('predictionResult').style.display = 'none';
+            }
+        }
+
+        function predictDisease() {
+            if (symptoms.length === 0) return;
+            
+            // In a real app, this would call an AI API
+            // For demo, we'll simulate prediction based on symptom keywords
+            const possibleConditions = [];
+            
+            // Check each symptom against our disease data
+            symptoms.forEach(symptom => {
+                const symptomLower = symptom.toLowerCase();
+                
+                for (const [key, diseases] of Object.entries(diseaseData)) {
+                    if (symptomLower.includes(key)) {
+                        diseases.forEach(disease => {
+                            if (!possibleConditions.includes(disease)) {
+                                possibleConditions.push(disease);
+                            }
+                        });
+                    }
+                }
+            });
+            
+            // If no specific matches found, show some generic conditions
+            if (possibleConditions.length === 0) {
+                possibleConditions.push("Viral Infection", "Bacterial Infection", "Stress-Related Condition");
+            }
+            
+            // Display the results
+            const predictionItems = document.getElementById('predictionItems');
+            predictionItems.innerHTML = '';
+            
+            possibleConditions.forEach(condition => {
+                const accuracy = Math.floor(Math.random() * 60) + 40; // Random accuracy between 40-100%
+                
+                const item = document.createElement('div');
+                item.className = 'prediction-item';
+                item.innerHTML = `
+                    <div>${condition}</div>
+                    <div class="accuracy-meter">
+                        <div class="accuracy-fill" style="width: ${accuracy}%"></div>
+                    </div>
+                    <div>${accuracy}% match</div>
+                `;
+                predictionItems.appendChild(item);
+            });
+            
+            // Show the prediction result
+            document.getElementById('predictionResult').style.display = 'block';
+            
+            // Update title based on language
+            const lang = localStorage.getItem('selectedLanguage') || 'en';
+            document.querySelector('.prediction-title').textContent = translations[lang].possibleConditions;
+        }
+
+        // class h
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Prevent form submission on Enter key
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                validateLogin();
+            }
+        });
+
+        // Add CSS animation for scanning effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes scanAnimation {
+                0% { background: rgba(0, 0, 0, 0.5); }
+                50% { background: rgba(0, 204, 255, 0.3); }
+                100% { background: rgba(0, 0, 0, 0.5); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize the app by showing login screen
+        document.getElementById('loginScreen').style.display = 'block';
+    </script>
+</body>
+</html>
