@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REAL PHARMACY</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>REAL PHARMACY - Your Trusted Healthcare Partner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         /* MAIN STYLES */
+        :root {
+            --primary: #0066cc;
+            --primary-dark: #003366;
+            --secondary: #00ccff;
+            --accent: #00ffcc;
+            --danger: #ff6b6b;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --card-border: rgba(255, 255, 255, 0.2);
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -17,12 +33,13 @@
         }
         
         body {
-            background: linear-gradient(135deg, #0066cc, #003366);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
+            padding: 20px;
         }
         
         /* SCREEN CONTAINER */
@@ -31,32 +48,53 @@
             max-width: 800px;
             margin: 20px;
             display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         /* LOGIN SCREEN */
         .login-container {
             padding: 40px 30px;
-            background: rgba(0, 51, 102, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 150, 255, 0.6);
+            background: rgba(0, 51, 102, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 150, 255, 0.6);
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0, 150, 255, 0.4);
+            border: 1px solid var(--card-border);
             z-index: 1;
         }
         
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 204, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
         .pharma-brand {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
-            color: #00ccff;
+            color: var(--secondary);
             text-shadow: 0 0 15px rgba(0, 204, 255, 0.8);
             margin-bottom: 20px;
             letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         
         .login-title {
-            color: #00ccff;
+            color: var(--secondary);
             margin-bottom: 30px;
             font-size: 24px;
             text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
@@ -70,11 +108,11 @@
         .input-group label {
             display: block;
             margin-bottom: 8px;
-            color: #00ccff;
-            font-weight: bold;
+            color: var(--secondary);
+            font-weight: 600;
         }
         
-        .input-group input, .input-group textarea {
+        .input-group input, .input-group textarea, .input-group select {
             width: 100%;
             padding: 12px 15px;
             background: rgba(0, 0, 51, 0.5);
@@ -84,6 +122,12 @@
             color: white;
             outline: none;
             resize: vertical;
+            transition: all 0.3s;
+        }
+        
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
         }
         
         .input-group textarea {
@@ -93,30 +137,32 @@
         .login-btn {
             width: 100%;
             padding: 14px;
-            background: transparent;
-            color: #00ccff;
-            border: 2px solid #00ccff;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            border: none;
             border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 204, 255, 0.4);
         }
         
         .login-btn:hover {
-            background: rgba(0, 204, 255, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 204, 255, 0.6);
         }
         
         .register-link {
             display: block;
             margin-top: 25px;
-            color: #00ccff;
+            color: var(--secondary);
             text-decoration: none;
         }
         
         .subtext {
-            color: #00ccff;
+            color: var(--secondary);
             font-size: 12px;
             margin-top: 5px;
         }
@@ -132,19 +178,19 @@
         /* LANGUAGE SELECTION SCREEN */
         .language-container {
             padding: 40px 30px;
-            background: rgba(0, 51, 102, 0.8);
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(0, 150, 255, 0.6);
+            background: rgba(0, 51, 102, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 150, 255, 0.6);
             text-align: center;
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0, 150, 255, 0.4);
+            border: 1px solid var(--card-border);
             z-index: 1;
         }
         
         .language-title {
             font-size: 28px;
-            color: #00ccff;
+            color: var(--secondary);
             margin-bottom: 30px;
             text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
         }
@@ -188,25 +234,45 @@
         .pharma-app {
             padding: 20px;
             background: rgba(0, 51, 102, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 102, 204, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.6);
+            border: 1px solid var(--card-border);
         }
         
         .app-header {
-            background: #0066cc;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        /* MOVED AI ASSISTANT TO TOP */
+        .app-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+        
+        /* AI ASSISTANT */
         .ai-assistant {
             margin-bottom: 20px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
             border-radius: 10px;
+            border: 1px solid var(--card-border);
         }
         
         .ai-header {
@@ -218,18 +284,35 @@
         .ai-title {
             font-size: 24px;
             font-weight: bold;
-            color: #00ccff;
+            color: var(--secondary);
             margin-left: 10px;
         }
         
-        .ai-message-box {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            min-height: 80px;
+        .ai-chat-container {
             max-height: 200px;
             overflow-y: auto;
+            margin-bottom: 15px;
+        }
+        
+        .ai-message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .user-message {
+            background: rgba(0, 204, 255, 0.2);
+            margin-left: auto;
+            border: 1px solid rgba(0, 204, 255, 0.4);
+        }
+        
+        .bot-message {
+            background: rgba(0, 0, 0, 0.3);
+            margin-right: auto;
+            border: 1px solid rgba(0, 204, 255, 0.2);
         }
         
         .ai-input-container {
@@ -252,12 +335,17 @@
             position: absolute;
             right: 5px;
             top: 5px;
-            background: #00ccff;
+            background: var(--secondary);
             color: white;
             border: none;
             border-radius: 5px;
             padding: 7px 15px;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .ai-submit-btn:hover {
+            background: var(--primary);
         }
         
         .feature-boxes {
@@ -268,8 +356,8 @@
         }
         
         .feature-box {
-            background: rgba(0, 102, 204, 0.3);
-            border: 1px solid rgba(0, 204, 255, 0.3);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 10px;
             padding: 15px;
             text-align: center;
@@ -291,7 +379,7 @@
         .feature-icon {
             font-size: 30px;
             margin-bottom: 10px;
-            color: #00ccff;
+            color: var(--secondary);
         }
         
         .feature-title {
@@ -304,12 +392,13 @@
         .organ-selection {
             padding: 20px;
             background: rgba(0, 51, 102, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 102, 204, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.6);
+            border: 1px solid var(--card-border);
         }
         
         .organ-header {
-            background: #0066cc;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             padding: 15px;
             border-radius: 10px;
@@ -328,6 +417,11 @@
             padding: 5px 10px;
             border-radius: 5px;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .back-btn:hover {
+            background: rgba(0, 204, 255, 0.4);
         }
         
         .organ-title {
@@ -370,12 +464,13 @@
         .second-home {
             padding: 20px;
             background: rgba(0, 51, 102, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 102, 204, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.6);
+            border: 1px solid var(--card-border);
         }
         
         .second-home-header {
-            background: #0066cc;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             padding: 15px;
             border-radius: 10px;
@@ -401,8 +496,8 @@
         }
         
         .second-home-feature {
-            background: rgba(0, 102, 204, 0.3);
-            border: 1px solid rgba(0, 204, 255, 0.3);
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 10px;
             padding: 15px;
             text-align: center;
@@ -424,7 +519,7 @@
         .second-home-icon {
             font-size: 30px;
             margin-bottom: 10px;
-            color: #00ccff;
+            color: var(--secondary);
         }
         
         .second-home-title {
@@ -438,8 +533,8 @@
             width: 100%;
             padding: 14px;
             background: rgba(0, 204, 255, 0.2);
-            color: #00ccff;
-            border: 2px solid #00ccff;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
             border-radius: 8px;
             font-size: 16px;
             font-weight: bold;
@@ -459,7 +554,7 @@
 
         /* Error Message Style */
         .error-message {
-            color: #ff6b6b;
+            color: var(--danger);
             font-size: 14px;
             margin-top: 5px;
             display: none;
@@ -475,26 +570,35 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease;
         }
 
         .modal-content {
-            background: rgba(0, 51, 102, 0.9);
+            background: rgba(0, 51, 102, 0.95);
             margin: 10% auto;
             padding: 20px;
-            border: 1px solid #00ccff;
-            border-radius: 10px;
+            border: 1px solid var(--secondary);
+            border-radius: 15px;
             width: 80%;
             max-width: 400px;
             text-align: center;
             color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: scaleIn 0.3s ease;
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .close-btn {
-            color: #00ccff;
+            color: var(--secondary);
             float: right;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
+            transition: all 0.3s;
         }
 
         .close-btn:hover {
@@ -507,10 +611,11 @@
             margin: 20px auto;
             background: white;
             padding: 10px;
+            border-radius: 10px;
         }
 
         .modal-title {
-            color: #00ccff;
+            color: var(--secondary);
             margin-bottom: 15px;
         }
 
@@ -554,7 +659,7 @@
         .scanner-placeholder i {
             font-size: 50px;
             margin-bottom: 15px;
-            color: #00ccff;
+            color: var(--secondary);
         }
 
         .scanner-frame {
@@ -564,7 +669,7 @@
             transform: translate(-50%, -50%);
             width: 80%;
             height: 60%;
-            border: 3px solid #00ccff;
+            border: 3px solid var(--secondary);
             border-radius: 5px;
             z-index: 2;
         }
@@ -587,14 +692,14 @@
             transform: translate(-50%, -50%);
             width: 80%;
             height: 60%;
-            border: 2px dashed #00ccff;
+            border: 2px dashed var(--secondary);
             border-radius: 5px;
         }
 
         .scan-btn {
             width: 100%;
             padding: 12px;
-            background: #00ccff;
+            background: var(--secondary);
             color: white;
             border: none;
             border-radius: 8px;
@@ -602,6 +707,11 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .scan-btn:hover {
+            background: var(--primary);
         }
 
         .scan-result {
@@ -613,7 +723,7 @@
         }
 
         .scan-error {
-            color: #ff6b6b;
+            color: var(--danger);
             margin-top: 10px;
         }
 
@@ -621,8 +731,9 @@
         .ai-disease-predictor {
             margin-bottom: 20px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--card-bg);
             border-radius: 10px;
+            border: 1px solid var(--card-border);
         }
 
         .disease-header {
@@ -634,7 +745,7 @@
         .disease-title {
             font-size: 24px;
             font-weight: bold;
-            color: #00ccff;
+            color: var(--secondary);
             margin-left: 10px;
         }
 
@@ -655,7 +766,7 @@
         .voice-input-btn {
             flex: 1;
             padding: 12px;
-            background: #00ccff;
+            background: var(--secondary);
             color: white;
             border: none;
             border-radius: 8px;
@@ -665,12 +776,13 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
+            transition: all 0.3s;
         }
 
         .voice-input-btn.stop {
-            background: #ff6b6b;
+            background: var(--danger);
         }
-
+        
         .voice-input-btn:hover {
             opacity: 0.9;
         }
@@ -688,14 +800,15 @@
         }
 
         .remove-symptom {
-            color: #ff6b6b;
+            color: var(--danger);
             cursor: pointer;
+            font-weight: bold;
         }
 
         .predict-btn {
             width: 100%;
             padding: 12px;
-            background: #00ccff;
+            background: var(--secondary);
             color: white;
             border: none;
             border-radius: 8px;
@@ -703,6 +816,16 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 15px;
+            transition: all 0.3s;
+        }
+        
+        .predict-btn:hover:not(:disabled) {
+            background: var(--primary);
+        }
+        
+        .predict-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
         }
 
         .prediction-result {
@@ -714,7 +837,7 @@
         }
 
         .prediction-title {
-            color: #00ccff;
+            color: var(--secondary);
             margin-bottom: 10px;
             font-weight: bold;
         }
@@ -729,7 +852,7 @@
             content: '•';
             position: absolute;
             left: 0;
-            color: #00ccff;
+            color: var(--secondary);
         }
 
         .accuracy-meter {
@@ -742,7 +865,7 @@
 
         .accuracy-fill {
             height: 100%;
-            background: #00ccff;
+            background: var(--secondary);
             border-radius: 5px;
         }
 
@@ -788,33 +911,7 @@
             50% { height: 20px; }
         }
 
-        /* AI Chat Message Styles */
-        .ai-chat-container {
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-        }
-
-        .ai-message {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-
-        .user-message {
-            background: rgba(0, 204, 255, 0.2);
-            margin-left: auto;
-            border: 1px solid rgba(0, 204, 255, 0.4);
-        }
-
-        .bot-message {
-            background: rgba(0, 0, 0, 0.3);
-            margin-right: auto;
-            border: 1px solid rgba(0, 204, 255, 0.2);
-        }
-
+        /* Typing Indicator */
         .typing-indicator {
             display: inline-block;
         }
@@ -823,7 +920,7 @@
             display: inline-block;
             width: 8px;
             height: 8px;
-            background-color: #00ccff;
+            background-color: var(--secondary);
             border-radius: 50%;
             margin-right: 3px;
             animation: typing 1.4s infinite ease-in-out;
@@ -846,12 +943,13 @@
         .medicine-order {
             padding: 20px;
             background: rgba(0, 51, 102, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 102, 204, 0.6);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 102, 204, 0.6);
+            border: 1px solid var(--card-border);
         }
         
         .order-header {
-            background: #0066cc;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             padding: 15px;
             border-radius: 10px;
@@ -874,9 +972,10 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px;
-            background: rgba(0, 102, 204, 0.3);
+            background: var(--card-bg);
             border-radius: 8px;
             margin-bottom: 10px;
+            border: 1px solid var(--card-border);
         }
         
         .medicine-name {
@@ -884,7 +983,7 @@
         }
         
         .medicine-price {
-            color: #00ccff;
+            color: var(--secondary);
         }
         
         .quantity-control {
@@ -895,7 +994,7 @@
         
         .quantity-btn {
             background: rgba(0, 204, 255, 0.2);
-            border: 1px solid #00ccff;
+            border: 1px solid var(--secondary);
             color: white;
             width: 30px;
             height: 30px;
@@ -904,6 +1003,11 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background: rgba(0, 204, 255, 0.4);
         }
         
         .quantity {
@@ -937,18 +1041,19 @@
         }
         
         .address-title {
-            color: #00ccff;
+            color: var(--secondary);
             margin-bottom: 10px;
             font-weight: bold;
         }
         
         .saved-address {
-            background: rgba(0, 102, 204, 0.3);
+            background: var(--card-bg);
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 15px;
             cursor: pointer;
             transition: all 0.3s;
+            border: 1px solid var(--card-border);
         }
         
         .saved-address:hover {
@@ -956,7 +1061,7 @@
         }
         
         .saved-address.selected {
-            border: 2px solid #00ccff;
+            border: 2px solid var(--secondary);
         }
         
         .address-actions {
@@ -969,23 +1074,33 @@
             flex: 1;
             padding: 8px;
             background: rgba(0, 204, 255, 0.2);
-            color: #00ccff;
-            border: 1px solid #00ccff;
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
             border-radius: 5px;
             cursor: pointer;
             font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .address-action-btn:hover {
+            background: rgba(0, 204, 255, 0.4);
         }
         
         .new-address-btn {
             width: 100%;
             padding: 12px;
             background: rgba(0, 204, 255, 0.2);
-            color: #00ccff;
-            border: 2px solid #00ccff;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
             margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        .new-address-btn:hover {
+            background: rgba(0, 204, 255, 0.3);
         }
         
         .new-address-form {
@@ -1008,24 +1123,33 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            transition: all 0.3s;
         }
         
         .save-btn {
-            background: #00ccff;
+            background: var(--secondary);
             color: white;
             border: none;
         }
         
+        .save-btn:hover {
+            background: var(--primary);
+        }
+        
         .cancel-btn {
             background: transparent;
-            color: #00ccff;
-            border: 1px solid #00ccff;
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+        }
+        
+        .cancel-btn:hover {
+            background: rgba(0, 204, 255, 0.1);
         }
         
         .place-order-btn {
             width: 100%;
             padding: 15px;
-            background: #00ccff;
+            background: var(--secondary);
             color: white;
             border: none;
             border-radius: 8px;
@@ -1033,6 +1157,16 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .place-order-btn:hover:not(:disabled) {
+            background: var(--primary);
+        }
+        
+        .place-order-btn:disabled {
+            background: var(--gray);
+            cursor: not-allowed;
         }
         
         .success-message {
@@ -1046,15 +1180,298 @@
         
         .success-icon {
             font-size: 50px;
-            color: #00ff00;
+            color: var(--success);
             margin-bottom: 15px;
+        }
+        
+        /* NEW FEATURES STYLES */
+        
+        /* Health Dashboard */
+        .health-dashboard {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--card-border);
+        }
+        
+        .dashboard-title {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .health-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .health-stat {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Medicine Interactions Checker */
+        .interactions-checker {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--card-border);
+        }
+        
+        .interactions-title {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .selected-medicines {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .selected-medicine {
+            background: rgba(0, 204, 255, 0.2);
+            border: 1px solid var(--secondary);
+            border-radius: 20px;
+            padding: 5px 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .remove-medicine {
+            color: var(--danger);
+            cursor: pointer;
+        }
+        
+        .interactions-result {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .interaction-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .interaction-severity {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .severity-low {
+            background: var(--success);
+        }
+        
+        .severity-medium {
+            background: var(--warning);
+        }
+        
+        .severity-high {
+            background: var(--danger);
+        }
+        
+        /* Medicine Price Comparison */
+        .price-comparison {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--card-border);
+        }
+        
+        .comparison-title {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table th {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .best-price {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Medicine Reminder */
+        .medicine-reminder {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--card-border);
+        }
+        
+        .reminder-title {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .reminder-list {
+            margin-top: 15px;
+        }
+        
+        .reminder-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .reminder-time {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .reminder-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .reminder-action-btn {
+            background: rgba(0, 204, 255, 0.2);
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+        
+        .reminder-action-btn:hover {
+            background: rgba(0, 204, 255, 0.4);
+        }
+        
+        /* Loading Spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--secondary);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .feature-boxes, .second-home-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .health-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-row {
+                flex-direction: column;
+            }
+            
+            .voice-input-container {
+                flex-direction: column;
+            }
+        }
+        
+        /* Notification Badge */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--danger);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            height: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--secondary);
+            border-radius: 4px;
+            transition: width 0.5s ease;
         }
     </style>
 </head>
 <body>
     <!-- LOGIN SCREEN (FIRST PAGE) -->
     <div id="loginScreen" class="screen-container login-container">
-        <div class="pharma-brand">REAL PHARMACY</div>
+        <div class="pharma-brand">
+            <i class="fas fa-clinic-medical"></i>
+            REAL PHARMACY
+        </div>
         <div class="login-title">APP LOGIN</div>
         
         <div class="input-group">
@@ -1071,12 +1488,15 @@
         
         <button class="login-btn" onclick="validateLogin()">LOGIN</button>
         <a href="#" class="register-link">Don't have an account? Register</a>
-        <div class="subtext">⏰ Fastest Medicine Delivery</div>
+        <div class="subtext">⏰ Fastest Medicine Delivery • 24/7 Support</div>
     </div>
 
     <!-- OTP VERIFICATION SCREEN -->
     <div id="otpScreen" class="screen-container login-container">
-        <div class="pharma-brand">REAL PHARMACY</div>
+        <div class="pharma-brand">
+            <i class="fas fa-clinic-medical"></i>
+            REAL PHARMACY
+        </div>
         <div class="login-title">OTP VERIFICATION</div>
         
         <div class="input-group">
@@ -1087,7 +1507,7 @@
         
         <button class="login-btn" onclick="validateOTP()">VERIFY OTP</button>
         <a href="#" class="register-link" onclick="resendOTP()">Resend OTP</a>
-        <div class="subtext">Secure Login Process</div>
+        <div class="subtext">Secure Login Process • Encrypted Connection</div>
     </div>
 
     <!-- LANGUAGE SELECTION SCREEN (SECOND PAGE) -->
@@ -1136,12 +1556,47 @@
             <p id="appSubtitle">Your trusted healthcare partner</p>
         </div>
         
-        <!-- UPLOAD PRESCRIPTION BUTTON ADDED HERE -->
+        <!-- Health Dashboard -->
+        <div class="health-dashboard">
+            <div class="dashboard-title">
+                <i class="fas fa-heartbeat"></i>
+                Health Dashboard
+            </div>
+            <div class="health-stats">
+                <div class="health-stat">
+                    <div class="stat-value" id="stepsCount">7,842</div>
+                    <div class="stat-label">Steps Today</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 78%"></div>
+                    </div>
+                </div>
+                <div class="health-stat">
+                    <div class="stat-value" id="waterIntake">1.8L</div>
+                    <div class="stat-label">Water Intake</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                </div>
+                <div class="health-stat">
+                    <div class="stat-value" id="sleepHours">6.5h</div>
+                    <div class="stat-label">Sleep Last Night</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 81%"></div>
+                    </div>
+                </div>
+                <div class="health-stat">
+                    <div class="stat-value" id="heartRate">72</div>
+                    <div class="stat-label">Resting Heart Rate</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- UPLOAD PRESCRIPTION BUTTON -->
         <button class="upload-prescription-btn" onclick="openPrescriptionScanner()">
             <i class="fas fa-camera"></i> Scan Prescription
         </button>
         
-        <!-- AI DISEASE PREDICTOR ADDED HERE -->
+        <!-- AI DISEASE PREDICTOR -->
         <div class="ai-disease-predictor">
             <div class="disease-header">
                 <i class="fas fa-heartbeat" style="font-size: 30px; color: #00ccff;"></i>
@@ -1165,6 +1620,68 @@
             </div>
         </div>
         
+        <!-- MEDICINE INTERACTIONS CHECKER -->
+        <div class="interactions-checker">
+            <div class="interactions-title">
+                <i class="fas fa-pills"></i>
+                Medicine Interactions Checker
+            </div>
+            <div class="input-group">
+                <label>Search for Medicines</label>
+                <input type="text" id="medicineSearch" placeholder="Type medicine name..." onkeyup="searchMedicines()">
+                <div id="medicineSuggestions" class="suggestions-list"></div>
+            </div>
+            <div class="selected-medicines" id="selectedMedicines"></div>
+            <button class="login-btn" id="checkInteractionsBtn" onclick="checkInteractions()" disabled>
+                Check Interactions
+            </button>
+            <div class="interactions-result" id="interactionsResult">
+                <div class="interactions-title">Interaction Results</div>
+                <div id="interactionItems"></div>
+            </div>
+        </div>
+        
+        <!-- MEDICINE PRICE COMPARISON -->
+        <div class="price-comparison">
+            <div class="comparison-title">
+                <i class="fas fa-search-dollar"></i>
+                Price Comparison
+            </div>
+            <div class="input-group">
+                <label>Medicine to Compare</label>
+                <input type="text" id="priceComparisonInput" placeholder="Enter medicine name" value="Paracetamol 500mg">
+            </div>
+            <button class="login-btn" onclick="comparePrices()">Compare Prices</button>
+            <div class="comparison-table-container" style="margin-top: 15px; overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Pharmacy</th>
+                            <th>Price</th>
+                            <th>Delivery</th>
+                            <th>Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody id="priceComparisonResults">
+                        <!-- Results will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- MEDICINE REMINDER -->
+        <div class="medicine-reminder">
+            <div class="reminder-title">
+                <i class="fas fa-bell"></i>
+                Medicine Reminders
+                <span class="notification-badge" id="reminderCount">2</span>
+            </div>
+            <button class="login-btn" onclick="addReminder()">Add New Reminder</button>
+            <div class="reminder-list" id="reminderList">
+                <!-- Reminders will be populated here -->
+            </div>
+        </div>
+        
         <!-- MOVED AI ASSISTANT TO TOP -->
         <div class="ai-assistant">
             <div class="ai-header">
@@ -1184,7 +1701,7 @@
             </div>
         </div>
         
-        <!-- FEATURE BOXES MOVED BELOW AI ASSISTANT -->
+        <!-- FEATURE BOXES -->
         <div class="feature-boxes">
             <div class="feature-box" onclick="openMedicineOrder()">
                 <div class="feature-icon">💊</div>
@@ -1261,6 +1778,10 @@
                 <span>Delivery Charge:</span>
                 <span id="deliveryCharge">₹30</span>
             </div>
+            <div class="summary-row">
+                <span>Discount:</span>
+                <span id="discount">-₹0</span>
+            </div>
             <div class="summary-row total-row">
                 <span>Total:</span>
                 <span id="totalAmount">₹30</span>
@@ -1328,51 +1849,51 @@
         </div>
         
         <div class="second-home-features">
-            <div class="second-home-feature" onclick="alert('Opening Order History')">
+            <div class="second-home-feature" onclick="openOrderHistory()">
                 <div class="second-home-icon">📋</div>
                 <div class="second-home-title">Order History</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening Health Records')">
+            <div class="second-home-feature" onclick="openHealthRecords()">
                 <div class="second-home-icon">📊</div>
                 <div class="second-home-title">Health Records</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Showing Nearby Hospitals')">
+            <div class="second-home-feature" onclick="openNearbyHospitals()">
                 <div class="second-home-icon">🏥</div>
                 <div class="second-home-title">Nearby Hospitals</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening Medicine Refill')">
+            <div class="second-home-feature" onclick="openMedicineRefill()">
                 <div class="second-home-icon">🔄</div>
                 <div class="second-home-title">Medicine Refill</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening Elderly Care')">
+            <div class="second-home-feature" onclick="openElderlyCare()">
                 <div class="second-home-icon">👴</div>
                 <div class="second-home-title">Elderly Care</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening Pregnancy Care')">
+            <div class="second-home-feature" onclick="openPregnancyCare()">
                 <div class="second-home-icon">🤰</div>
                 <div class="second-home-title">Pregnancy Care</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening Dental Care')">
+            <div class="second-home-feature" onclick="openDentalCare()">
                 <div class="second-home-icon">🦷</div>
                 <div class="second-home-title">Dental Care</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening Baby Care')">
+            <div class="second-home-feature" onclick="openBabyCare()">
                 <div class="second-home-icon">👶</div>
                 <div class="second-home-title">Baby Care</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening Mental Health')">
+            <div class="second-home-feature" onclick="openMentalHealth()">
                 <div class="second-home-icon">🧠</div>
                 <div class="second-home-title">Mental Health</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening Nutrition')">
+            <div class="second-home-feature" onclick="openNutrition()">
                 <div class="second-home-icon">🍎</div>
                 <div class="second-home-title">Nutrition</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening First Aid')">
+            <div class="second-home-feature" onclick="openFirstAid()">
                 <div class="second-home-icon">🩹</div>
                 <div class="second-home-title">First Aid</div>
             </div>
-            <div class="second-home-feature" onclick="alert('Opening Appointments')">
+            <div class="second-home-feature" onclick="openAppointments()">
                 <div class="second-home-icon">📅</div>
                 <div class="second-home-title">Appointments</div>
             </div>
@@ -1707,10 +2228,44 @@
             { id: 6, name: "Vitamin C 500mg", price: 45, description: "Immunity booster" }
         ];
 
+        // Medicine interactions data
+        const medicineInteractions = {
+            "paracetamol": [
+                { medicine: "Warfarin", severity: "medium", description: "May increase risk of bleeding" },
+                { medicine: "Alcohol", severity: "high", description: "May increase risk of liver damage" }
+            ],
+            "ibuprofen": [
+                { medicine: "Aspirin", severity: "medium", description: "May increase risk of stomach bleeding" },
+                { medicine: "Lithium", severity: "high", description: "May increase lithium levels in blood" }
+            ],
+            "amoxicillin": [
+                { medicine: "Methotrexate", severity: "high", description: "May increase methotrexate toxicity" },
+                { medicine: "Oral Contraceptives", severity: "low", description: "May reduce effectiveness" }
+            ]
+        };
+
+        // Price comparison data
+        const pharmacyPrices = {
+            "Paracetamol 500mg": [
+                { pharmacy: "Real Pharmacy", price: 25, delivery: "Free", rating: 4.8 },
+                { pharmacy: "MedPlus", price: 28, delivery: "₹20", rating: 4.5 },
+                { pharmacy: "Apollo Pharmacy", price: 30, delivery: "₹30", rating: 4.7 },
+                { pharmacy: "Netmeds", price: 27, delivery: "Free", rating: 4.6 }
+            ],
+            "Ibuprofen 400mg": [
+                { pharmacy: "Real Pharmacy", price: 35, delivery: "Free", rating: 4.8 },
+                { pharmacy: "MedPlus", price: 38, delivery: "₹20", rating: 4.5 },
+                { pharmacy: "Apollo Pharmacy", price: 40, delivery: "₹30", rating: 4.7 },
+                { pharmacy: "Netmeds", price: 37, delivery: "Free", rating: 4.6 }
+            ]
+        };
+
         // Global variables for order management
         let cart = [];
         let selectedAddress = null;
         let userAddresses = [];
+        let selectedMedicines = [];
+        let reminders = [];
 
         // Improved Login Validation
         function validateLogin() {
@@ -1784,6 +2339,9 @@
             // Show welcome message in selected language
             const welcomeMessage = translations[lang]?.welcomeMessage || translations['en'].welcomeMessage;
             document.getElementById('welcomeMessage').textContent = welcomeMessage;
+            
+            // Initialize reminders
+            initializeReminders();
         }
         
         // Update all text elements based on language
@@ -2021,9 +2579,12 @@
         function updateOrderSummary() {
             const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
             const deliveryCharge = 30;
-            const total = subtotal + deliveryCharge;
+            const discount = subtotal > 500 ? 50 : 0;
+            const total = subtotal + deliveryCharge - discount;
             
             document.getElementById('subtotal').textContent = `₹${subtotal}`;
+            document.getElementById('deliveryCharge').textContent = `₹${deliveryCharge}`;
+            document.getElementById('discount').textContent = `-₹${discount}`;
             document.getElementById('totalAmount').textContent = `₹${total}`;
             
             // Enable/disable place order button
@@ -2167,7 +2728,8 @@
             // Calculate order total
             const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
             const deliveryCharge = 30;
-            const total = subtotal + deliveryCharge;
+            const discount = subtotal > 500 ? 50 : 0;
+            const total = subtotal + deliveryCharge - discount;
             
             // Get user email
             const userEmail = document.getElementById('email').value;
@@ -2180,6 +2742,7 @@
                 address: selectedAddress,
                 subtotal: subtotal,
                 deliveryCharge: deliveryCharge,
+                discount: discount,
                 total: total,
                 orderDate: new Date().toLocaleString()
             };
@@ -2219,6 +2782,7 @@
             formData.append('address', addressDetails);
             formData.append('subtotal', `₹${orderData.subtotal}`);
             formData.append('deliveryCharge', `₹${orderData.deliveryCharge}`);
+            formData.append('discount', `-₹${orderData.discount}`);
             formData.append('total', `₹${orderData.total}`);
             formData.append('orderDate', orderData.orderDate);
             
@@ -2507,6 +3071,286 @@
             document.querySelector('.prediction-title').textContent = translations[lang].possibleConditions;
         }
 
+        // NEW FEATURES IMPLEMENTATION
+
+        // Medicine Interactions Checker
+        function searchMedicines() {
+            const searchTerm = document.getElementById('medicineSearch').value.toLowerCase();
+            const suggestionsList = document.getElementById('medicineSuggestions');
+            suggestionsList.innerHTML = '';
+            
+            if (searchTerm.length < 2) return;
+            
+            const suggestions = Object.keys(medicineKnowledge).filter(medicine => 
+                medicine.toLowerCase().includes(searchTerm)
+            );
+            
+            suggestions.forEach(medicine => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.className = 'suggestion-item';
+                suggestionItem.textContent = medicine.charAt(0).toUpperCase() + medicine.slice(1);
+                suggestionItem.onclick = () => addMedicineToChecker(medicine);
+                suggestionsList.appendChild(suggestionItem);
+            });
+        }
+
+        function addMedicineToChecker(medicine) {
+            if (!selectedMedicines.includes(medicine)) {
+                selectedMedicines.push(medicine);
+                updateSelectedMedicines();
+                document.getElementById('medicineSearch').value = '';
+                document.getElementById('medicineSuggestions').innerHTML = '';
+                document.getElementById('checkInteractionsBtn').disabled = selectedMedicines.length < 2;
+            }
+        }
+
+        function updateSelectedMedicines() {
+            const selectedMedicinesContainer = document.getElementById('selectedMedicines');
+            selectedMedicinesContainer.innerHTML = '';
+            
+            selectedMedicines.forEach(medicine => {
+                const medicineItem = document.createElement('div');
+                medicineItem.className = 'selected-medicine';
+                medicineItem.innerHTML = `
+                    ${medicine.charAt(0).toUpperCase() + medicine.slice(1)}
+                    <span class="remove-medicine" onclick="removeMedicineFromChecker('${medicine}')">&times;</span>
+                `;
+                selectedMedicinesContainer.appendChild(medicineItem);
+            });
+        }
+
+        function removeMedicineFromChecker(medicine) {
+            selectedMedicines = selectedMedicines.filter(m => m !== medicine);
+            updateSelectedMedicines();
+            document.getElementById('checkInteractionsBtn').disabled = selectedMedicines.length < 2;
+            
+            // Hide results if we remove a medicine
+            if (selectedMedicines.length < 2) {
+                document.getElementById('interactionsResult').style.display = 'none';
+            }
+        }
+
+        function checkInteractions() {
+            if (selectedMedicines.length < 2) return;
+            
+            const interactionsResult = document.getElementById('interactionsResult');
+            const interactionItems = document.getElementById('interactionItems');
+            interactionItems.innerHTML = '';
+            
+            let hasInteractions = false;
+            
+            // Check for interactions between selected medicines
+            for (let i = 0; i < selectedMedicines.length; i++) {
+                for (let j = i + 1; j < selectedMedicines.length; j++) {
+                    const med1 = selectedMedicines[i];
+                    const med2 = selectedMedicines[j];
+                    
+                    // Check if med1 has interactions with med2
+                    if (medicineInteractions[med1]) {
+                        const interaction = medicineInteractions[med1].find(int => 
+                            int.medicine.toLowerCase() === med2
+                        );
+                        
+                        if (interaction) {
+                            hasInteractions = true;
+                            const interactionItem = document.createElement('div');
+                            interactionItem.className = 'interaction-item';
+                            interactionItem.innerHTML = `
+                                <span class="interaction-severity severity-${interaction.severity}">${interaction.severity.toUpperCase()}</span>
+                                <strong>${med1.charAt(0).toUpperCase() + med1.slice(1)}</strong> and <strong>${med2.charAt(0).toUpperCase() + med2.slice(1)}</strong>: ${interaction.description}
+                            `;
+                            interactionItems.appendChild(interactionItem);
+                        }
+                    }
+                    
+                    // Check if med2 has interactions with med1
+                    if (medicineInteractions[med2]) {
+                        const interaction = medicineInteractions[med2].find(int => 
+                            int.medicine.toLowerCase() === med1
+                        );
+                        
+                        if (interaction) {
+                            hasInteractions = true;
+                            const interactionItem = document.createElement('div');
+                            interactionItem.className = 'interaction-item';
+                            interactionItem.innerHTML = `
+                                <span class="interaction-severity severity-${interaction.severity}">${interaction.severity.toUpperCase()}</span>
+                                <strong>${med2.charAt(0).toUpperCase() + med2.slice(1)}</strong> and <strong>${med1.charAt(0).toUpperCase() + med1.slice(1)}</strong>: ${interaction.description}
+                            `;
+                            interactionItems.appendChild(interactionItem);
+                        }
+                    }
+                }
+            }
+            
+            if (!hasInteractions) {
+                interactionItems.innerHTML = '<p>No significant interactions found between the selected medicines.</p>';
+            }
+            
+            interactionsResult.style.display = 'block';
+        }
+
+        // Price Comparison
+        function comparePrices() {
+            const medicineName = document.getElementById('priceComparisonInput').value;
+            const resultsContainer = document.getElementById('priceComparisonResults');
+            resultsContainer.innerHTML = '';
+            
+            if (!pharmacyPrices[medicineName]) {
+                resultsContainer.innerHTML = '<tr><td colspan="4" style="text-align: center;">No price data available for this medicine.</td></tr>';
+                return;
+            }
+            
+            const prices = pharmacyPrices[medicineName];
+            let bestPrice = Number.MAX_SAFE_INTEGER;
+            
+            // Find the best price
+            prices.forEach(pharmacy => {
+                if (pharmacy.price < bestPrice) {
+                    bestPrice = pharmacy.price;
+                }
+            });
+            
+            // Display results
+            prices.forEach(pharmacy => {
+                const row = document.createElement('tr');
+                const isBestPrice = pharmacy.price === bestPrice;
+                
+                row.innerHTML = `
+                    <td>${pharmacy.pharmacy}</td>
+                    <td class="${isBestPrice ? 'best-price' : ''}">₹${pharmacy.price}</td>
+                    <td>${pharmacy.delivery}</td>
+                    <td>${pharmacy.rating} ⭐</td>
+                `;
+                
+                resultsContainer.appendChild(row);
+            });
+        }
+
+        // Medicine Reminders
+        function initializeReminders() {
+            const savedReminders = localStorage.getItem('medicineReminders');
+            reminders = savedReminders ? JSON.parse(savedReminders) : [
+                { id: 1, medicine: "Paracetamol", time: "08:00", active: true },
+                { id: 2, medicine: "Vitamin C", time: "12:00", active: true }
+            ];
+            
+            updateReminderList();
+        }
+
+        function updateReminderList() {
+            const reminderList = document.getElementById('reminderList');
+            reminderList.innerHTML = '';
+            
+            const activeReminders = reminders.filter(reminder => reminder.active);
+            document.getElementById('reminderCount').textContent = activeReminders.length;
+            
+            if (activeReminders.length === 0) {
+                reminderList.innerHTML = '<p>No active reminders. Add a new reminder to get started.</p>';
+                return;
+            }
+            
+            activeReminders.forEach(reminder => {
+                const reminderItem = document.createElement('div');
+                reminderItem.className = 'reminder-item';
+                reminderItem.innerHTML = `
+                    <div>
+                        <div class="medicine-name">${reminder.medicine}</div>
+                        <div class="reminder-time">${reminder.time}</div>
+                    </div>
+                    <div class="reminder-actions">
+                        <button class="reminder-action-btn" onclick="snoozeReminder(${reminder.id})">Snooze</button>
+                        <button class="reminder-action-btn" onclick="deleteReminder(${reminder.id})">Delete</button>
+                    </div>
+                `;
+                reminderList.appendChild(reminderItem);
+            });
+            
+            localStorage.setItem('medicineReminders', JSON.stringify(reminders));
+        }
+
+        function addReminder() {
+            const medicine = prompt("Enter medicine name:");
+            if (!medicine) return;
+            
+            const time = prompt("Enter reminder time (HH:MM):");
+            if (!time) return;
+            
+            const newReminder = {
+                id: Date.now(),
+                medicine: medicine,
+                time: time,
+                active: true
+            };
+            
+            reminders.push(newReminder);
+            updateReminderList();
+            alert(`Reminder set for ${medicine} at ${time}`);
+        }
+
+        function snoozeReminder(id) {
+            const reminder = reminders.find(r => r.id === id);
+            if (reminder) {
+                alert(`Reminder for ${reminder.medicine} snoozed for 10 minutes`);
+            }
+        }
+
+        function deleteReminder(id) {
+            if (confirm("Are you sure you want to delete this reminder?")) {
+                reminders = reminders.filter(r => r.id !== id);
+                updateReminderList();
+            }
+        }
+
+        // Second Home Page Features
+        function openOrderHistory() {
+            alert("Opening Order History...");
+        }
+
+        function openHealthRecords() {
+            alert("Opening Health Records...");
+        }
+
+        function openNearbyHospitals() {
+            alert("Finding Nearby Hospitals...");
+        }
+
+        function openMedicineRefill() {
+            alert("Opening Medicine Refill...");
+        }
+
+        function openElderlyCare() {
+            alert("Opening Elderly Care Services...");
+        }
+
+        function openPregnancyCare() {
+            alert("Opening Pregnancy Care Services...");
+        }
+
+        function openDentalCare() {
+            alert("Opening Dental Care Services...");
+        }
+
+        function openBabyCare() {
+            alert("Opening Baby Care Services...");
+        }
+
+        function openMentalHealth() {
+            alert("Opening Mental Health Services...");
+        }
+
+        function openNutrition() {
+            alert("Opening Nutrition Services...");
+        }
+
+        function openFirstAid() {
+            alert("Opening First Aid Guide...");
+        }
+
+        function openAppointments() {
+            alert("Opening Appointment Booking...");
+        }
+
         // class h
         window.onclick = function(event) {
             const modals = document.querySelectorAll('.modal');
@@ -2533,11 +3377,36 @@
                 50% { background: rgba(0, 204, 255, 0.3); }
                 100% { background: rgba(0, 0, 0, 0.5); }
             }
+            
+            .suggestions-list {
+                background: rgba(0, 0, 0, 0.7);
+                border: 1px solid var(--secondary);
+                border-radius: 8px;
+                margin-top: 5px;
+                max-height: 150px;
+                overflow-y: auto;
+                position: absolute;
+                width: 100%;
+                z-index: 10;
+            }
+            
+            .suggestion-item {
+                padding: 10px;
+                cursor: pointer;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .suggestion-item:hover {
+                background: rgba(0, 204, 255, 0.2);
+            }
         `;
         document.head.appendChild(style);
 
         // Initialize the app by showing login screen
         document.getElementById('loginScreen').style.display = 'block';
+        
+        // Initialize price comparison with default value
+        comparePrices();
     </script>
 </body>
 </html>
